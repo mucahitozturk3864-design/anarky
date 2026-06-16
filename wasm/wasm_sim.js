@@ -65,7 +65,7 @@ export const WASM_SIM = (() => {
 
     async init() {
       try {
-        const files = ['c_core/main.c', 'c_core/album_bst.h', 'c_core/album_bst.c', 'c_core/wav_writer.h', 'c_core/wav_writer.c', 'c_core/filters.h', 'c_core/filters.c', 'c_core/channel.c', 'c_core/effects.c', 'c_core/mixer.c'];
+        const files = ['c_core/main.c', 'c_core/types.h', 'c_core/album_bst.h', 'c_core/album_bst.c', 'c_core/wav_writer.h', 'c_core/wav_writer.c', 'c_core/filters.h', 'c_core/filters.c', 'c_core/channel.h', 'c_core/channel.c', 'c_core/effects.h', 'c_core/effects.c', 'c_core/mixer.h', 'c_core/mixer.c', 'c_core/sequencer.h', 'c_core/sequencer.c', 'c_core/analyzer.h', 'c_core/analyzer.c'];
         let fullSource = '';
         for (const f of files) {
           const response = await fetch(f);

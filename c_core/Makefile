@@ -1,15 +1,15 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2
 
-OBJS = main.o channel.o effects.o mixer.o wav_writer.o album_bst.o filters.o
+OBJS = main.o channel.o effects.o mixer.o wav_writer.o album_bst.o filters.o sequencer.o analyzer.o
 TARGET = anarky_daw_core
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -lm
 
-main.o: main.c types.h channel.h effects.h mixer.h wav_writer.h album_bst.h filters.h
+main.o: main.c types.h channel.h effects.h mixer.h wav_writer.h album_bst.h filters.h sequencer.h analyzer.h
 	$(CC) $(CFLAGS) -c main.c
 
 channel.o: channel.c channel.h types.h
@@ -29,6 +29,12 @@ album_bst.o: album_bst.c album_bst.h
 
 filters.o: filters.c filters.h
 	$(CC) $(CFLAGS) -c filters.c
+
+sequencer.o: sequencer.c sequencer.h types.h
+	$(CC) $(CFLAGS) -c sequencer.c
+
+analyzer.o: analyzer.c analyzer.h types.h
+	$(CC) $(CFLAGS) -c analyzer.c
 
 clean:
 	rm -f $(OBJS) $(TARGET)

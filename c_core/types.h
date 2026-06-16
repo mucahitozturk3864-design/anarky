@@ -22,4 +22,19 @@ typedef struct {
   int     enabled;
 } VocalEffect;
 
+// Step sequencer icin tek adimlik ritim kaydi.
+typedef struct {
+  int   active;
+  float velocity;
+  float frequency;
+} BeatStep;
+
+// Buffer analizi sonucunda hesaplanan teknik degerler.
+typedef struct {
+  float peak;
+  float rms;
+  float average;
+  int   zero_crossings;
+} AudioStats;
+
 #endif
