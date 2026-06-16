@@ -1,0 +1,437 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — ALBUM DETAIL PAGE STYLES
+   ========================================================================== */
+
+/* ── Generic album page ── */
+.detail-view-container {
+  min-height: calc(100vh - 62px); position: relative; overflow: hidden;
+  background: var(--theme-bg, var(--bg-pure));
+}
+.detail-bg-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.detail-back-btn {
+  position: relative; z-index: 2; display: inline-block; padding: 10px 20px;
+  margin: 20px 36px 0; font-family: var(--font-mono); font-size: 11px;
+  color: var(--text-muted); text-decoration: none; letter-spacing: 2px;
+  border: 1px solid var(--border-color); border-radius: 4px; transition: all var(--t-fast);
+}
+.detail-back-btn:hover { color: var(--theme-accent, var(--accent-red)); border-color: var(--theme-accent, var(--accent-red)); }
+.detail-top-grid {
+  position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 36px; padding: 28px 36px 40px; max-width: 1400px;
+}
+.detail-meta-panel { display: flex; flex-direction: column; gap: 16px; }
+.detail-artist-name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 5px; color: var(--text-muted); text-transform: uppercase; }
+.detail-album-title { font-family: var(--font-sans); font-size: clamp(28px,4vw,48px); font-weight: 900; color: var(--theme-accent, var(--accent-red)); text-shadow: 0 0 14px var(--theme-accent-glow, var(--accent-red-glow)); line-height: 1.1; }
+.detail-desc-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; max-width: 500px; }
+.detail-tracks-box { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+.tracks-box-header { font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; color: var(--text-muted); padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.3); }
+.track-list-wrapper { max-height: 300px; overflow-y: auto; }
+.track-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background var(--t-fast); cursor: pointer; }
+.track-row:last-child { border-bottom: none; }
+.track-row:hover { background: rgba(255,255,255,0.04); }
+.track-row.playing { background: rgba(var(--theme-accent-rgb,255,0,60),0.08); }
+.track-info-left { display: flex; align-items: center; gap: 12px; }
+.track-number { font-family: var(--font-mono); font-size: 10px; color: var(--text-dark); width: 20px; }
+.track-name { font-size: 13px; color: var(--text-main); }
+.track-row.playing .track-name { color: var(--theme-accent, var(--accent-red)); }
+.track-play-btn { background: none; border: 1px solid var(--border-color); color: var(--text-muted); font-family: var(--font-mono); font-size: 9px; padding: 4px 10px; cursor: pointer; border-radius: 3px; letter-spacing: 1px; transition: all var(--t-fast); }
+.track-play-btn:hover { border-color: var(--theme-accent, var(--accent-red)); color: var(--theme-accent, var(--accent-red)); }
+.track-row.playing .track-play-btn { background: var(--theme-accent, var(--accent-red)); color: #fff; border-color: transparent; }
+.collage-gallery-container { display: flex; flex-direction: column; gap: 16px; }
+.collage-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 4px; color: var(--text-muted); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+.collage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.collage-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; min-height: 110px; transition: border-color var(--t-fast); }
+.collage-item:hover { border-color: var(--theme-accent, var(--accent-red)); }
+.collage-item-1 { grid-column: 1 / -1; }
+
+
+/* ==========================================================================
+   MMLP — CHAOS PAGE
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.mmlp-chaos {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 62px);
+  background: #060204;
+  overflow: hidden;
+  /* Extra height so all scrawls are reachable */
+  padding-bottom: 60px;
+}
+
+/* Canvas rain stays underneath */
+.mmlp-chaos .detail-bg-canvas { z-index: 0; }
+
+/* ── Back button ── */
+.mmlp-back-btn {
+  position: absolute; top: 16px; left: 24px; z-index: 100;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
+  color: rgba(255,255,255,0.25); text-decoration: none;
+  transition: color 0.2s;
+}
+.mmlp-back-btn:hover { color: #ff003c; }
+
+/* ── Scrawl text elements ── */
+.mmlp-scrawl {
+  position: absolute;
+  font-family: 'Permanent Marker', 'Courier New', cursive;
+  color: #cc0030;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+  z-index: 5;
+  text-shadow: 0 0 8px rgba(200,0,40,0.3);
+  transition: text-shadow 0.3s;
+}
+
+/* ── Album Cover ── */
+.mmlp-cover-block {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  z-index: 20;
+  width: clamp(180px, 18vw, 260px);
+}
+.mmlp-cover-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.05),
+    0 20px 60px rgba(0,0,0,0.9),
+    0 0 60px rgba(200,0,40,0.2);
+}
+.mmlp-parental-badge {
+  position: absolute; bottom: 6px; right: 6px;
+  background: #000; border: 1px solid #fff;
+  padding: 4px 6px; display: flex; flex-direction: column;
+  align-items: center; line-height: 1.3;
+  font-family: monospace; font-size: 5px; color: #fff;
+  letter-spacing: 1px; font-weight: 900;
+}
+
+/* ── Photos ── */
+.mmlp-photo {
+  position: absolute; z-index: 15; overflow: hidden;
+}
+.mmlp-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(80%) contrast(1.2);
+  mix-blend-mode: luminosity;
+  opacity: 0.55;
+}
+.mmlp-photo:hover img { opacity: 0.75; filter: grayscale(50%) contrast(1.3); }
+
+.mmlp-photo-stage {
+  width: clamp(140px, 16vw, 220px);
+  height: clamp(160px, 20vw, 280px);
+  left: 5%;
+  top: 28%;
+  transform: rotate(-4deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+  border: 1px solid rgba(200,0,40,0.2);
+}
+
+.mmlp-photo-detroit {
+  width: clamp(150px, 18vw, 240px);
+  height: clamp(100px, 12vw, 160px);
+  right: 6%;
+  top: 40%;
+  transform: rotate(3deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8);
+  border: 1px solid rgba(200,0,40,0.15);
+}
+
+/* ── Tracklist — scattered ── */
+.mmlp-tracks-chaos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.mmlp-tracklist-label {
+  position: absolute;
+  left: 29%;
+  top: 16%;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 10px;
+  color: rgba(200,0,40,0.5);
+  letter-spacing: 4px;
+  transform: rotate(-2deg);
+  pointer-events: none;
+}
+
+.mmlp-track-scrawl {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: all;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.mmlp-track-scrawl:hover .mmlp-track-name { opacity: 1; }
+
+.mmlp-track-num {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 9px;
+  color: rgba(200,0,40,0.45);
+  min-width: 20px;
+  text-align: right;
+  line-height: 1;
+}
+
+.mmlp-track-name {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 13px;
+  color: rgba(200,0,40,0.8);
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.mmlp-track-scrawl.playing .mmlp-track-name {
+  color: #ff003c;
+  opacity: 1;
+  text-shadow: 0 0 12px rgba(255,0,60,0.5);
+}
+.mmlp-track-scrawl.playing .mmlp-track-num { color: rgba(255,0,60,0.7); }
+
+.mmlp-play-btn {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid rgba(200,0,40,0.3);
+  color: rgba(200,0,40,0.5);
+  cursor: pointer; font-size: 8px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.mmlp-play-btn:hover {
+  border-color: #ff003c; color: #ff003c;
+  box-shadow: 0 0 8px rgba(255,0,60,0.3);
+}
+.mmlp-track-scrawl.playing .mmlp-play-btn {
+  background: #ff003c; border-color: #ff003c; color: #fff;
+}
+
+/* ── Page wrapper ── */
+.mmlp-page {
+  background: #060204;
+  width: 100%;
+}
+
+/* ── Big stamp in background ── */
+.mmlp-big-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(100px, 18vw, 200px);
+  color: rgba(180,0,30,0.04);
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  white-space: nowrap;
+  letter-spacing: -4px;
+}
+
+/* ── Scroll hint ── */
+.mmlp-scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 12px;
+  color: rgba(200,0,40,0.35);
+  letter-spacing: 3px;
+  z-index: 50;
+  animation: mmlp-bob 2s ease-in-out infinite;
+}
+@keyframes mmlp-bob {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ════════════════════════════════════════════════
+   MMLP CONTENT ZONE (below the chaos)
+════════════════════════════════════════════════ */
+.mmlp-content {
+  background: #060204;
+  padding: 0 0 40px;
+}
+
+/* ── Photo strips ── */
+.mmlp-photo-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 40px 48px 0;
+  overflow: visible;
+}
+.mmlp-strip-reversed { justify-content: flex-end; }
+
+.mmlp-photo-frame {
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  transition: transform 0.3s;
+  width: clamp(140px, 15vw, 220px);
+  aspect-ratio: 3/4;
+}
+.mmlp-photo-frame.mmlp-pf-lg {
+  width: clamp(180px, 20vw, 300px);
+  aspect-ratio: 4/5;
+}
+.mmlp-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: grayscale(40%) contrast(1.1);
+  transition: filter 0.4s, transform 0.4s;
+}
+.mmlp-photo-frame:hover { transform: scale(1.03) rotate(0deg) !important; }
+.mmlp-photo-frame:hover img { filter: grayscale(0%) contrast(1.15); }
+
+/* ── Wiki sections ── */
+.mmlp-wiki-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 48px 48px 0;
+  position: relative;
+}
+.mmlp-wiki-alt { flex-direction: row-reverse; }
+
+.mmlp-wiki-label {
+  width: 100%;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 13px;
+  color: rgba(200,0,40,0.55);
+  letter-spacing: 4px;
+  margin-bottom: -16px;
+}
+
+.mmlp-wiki-body {
+  flex: 1; min-width: 280px;
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: 14px;
+  line-height: 1.85;
+  color: #666;
+}
+.mmlp-wiki-body p { margin: 0 0 14px; }
+.mmlp-wiki-body p:last-child { margin: 0; }
+.mmlp-wiki-body strong { color: #ccc; }
+.mmlp-wiki-body em { color: #888; font-style: italic; }
+
+.mmlp-wiki-photo-right {
+  flex-shrink: 0;
+  display: flex; align-items: center;
+}
+
+/* Stats pills (recording section) */
+.mmlp-wiki-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.mmlp-stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 14px 20px;
+  border-left: 2px solid rgba(200,0,40,0.3);
+}
+.mmlp-sp-val {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 28px;
+  color: #cc0030;
+  line-height: 1;
+}
+.mmlp-sp-lab {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #333;
+}
+
+/* Big numbers (commercial section) */
+.mmlp-big-numbers {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  padding-top: 8px;
+  flex-wrap: wrap;
+}
+.mmlp-bn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #333;
+}
+.mmlp-bn span {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 38px;
+  color: #cc0030;
+  line-height: 1;
+}
+
+/* ── Big quotes ── */
+.mmlp-big-quote {
+  padding: 64px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+.mmlp-bq-small { padding: 40px 80px; }
+
+.mmlp-bq-mark {
+  font-size: 80px;
+  line-height: 0.5;
+  color: rgba(200,0,40,0.18);
+  font-family: Georgia, serif;
+  font-weight: 900;
+}
+.mmlp-big-quote blockquote {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  line-height: 1.5;
+  color: #bbb;
+  font-style: italic;
+  max-width: 700px;
+}
+.mmlp-big-quote cite {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: rgba(200,0,40,0.5);
+}
+
+/* ── Footer strip ── */
+.mmlp-footer-strip {
+  margin-top: 60px;
+  padding: 16px 48px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.07);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  background: rgba(0,0,0,0.4);
+}

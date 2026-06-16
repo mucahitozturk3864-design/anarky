@@ -1,0 +1,322 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — BEAT MODULE STYLES  ⛧ SATANIC EDITION ⛧
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&display=swap');
+
+.beat-container {
+  --sat-purple: #7700cc;
+  --sat-gold:   #c8920a;
+  --sat-border: rgba(140,0,200,0.28);
+  --sat-glow:   rgba(120,0,200,0.35);
+  padding: 28px 36px;
+  min-height: calc(100vh - 62px);
+  display: flex; flex-direction: column; gap: 22px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(60,0,100,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 50% 100%, rgba(40,0,80,0.12) 0%, transparent 60%),
+    var(--bg-pure);
+  position: relative;
+}
+
+/* Arka plan okült süsü */
+.beat-container::before {
+  content: '⛤';
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 400px;
+  color: rgba(100,0,180,0.03);
+  pointer-events: none; z-index: 0; user-select: none;
+}
+.beat-container > * { position: relative; z-index: 1; }
+
+/* ── Header ── */
+.beat-header {
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--sat-border); padding-bottom: 16px;
+}
+.beat-header h2 {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 16px; letter-spacing: 6px;
+  color: #df80ff;
+  text-shadow: 0 0 14px rgba(140,0,255,0.5), 0 0 30px rgba(100,0,180,0.25);
+}
+.beat-transport { display: flex; align-items: center; gap: 10px; }
+.beat-transport-btn {
+  background: rgba(8,3,15,0.9);
+  border: 1px solid rgba(140,0,200,0.25);
+  color: rgba(160,60,255,0.55);
+  font-family: 'Cinzel', var(--font-mono); font-size: 10px;
+  padding: 8px 18px; cursor: pointer; border-radius: 3px;
+  letter-spacing: 2px; transition: all 0.2s;
+}
+.beat-transport-btn:hover {
+  border-color: #9b30ff; color: #9b30ff;
+  background: rgba(100,0,180,0.1);
+  text-shadow: 0 0 8px rgba(140,0,255,0.4);
+}
+.beat-transport-btn.play.active {
+  background: linear-gradient(135deg, #4a0080, #7700cc);
+  color: #fff; box-shadow: 0 0 16px rgba(120,0,200,0.4);
+}
+.beat-transport-btn.rec { border-color: rgba(180,0,30,0.5); color: rgba(200,0,40,0.7); }
+.beat-transport-btn.rec.recording {
+  background: rgba(150,0,20,0.3); color: #ff4455;
+  animation: recPulse 0.8s infinite;
+  box-shadow: 0 0 14px rgba(180,0,30,0.3);
+}
+@keyframes recPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+.beat-bpm-wrap { display: flex; align-items: center; gap: 10px; }
+.beat-bpm-label { font-family: 'Cinzel', var(--font-mono); font-size: 10px; color: #cba3ff; letter-spacing: 2px; }
+.beat-bpm-input {
+  background: rgba(8,3,15,0.9);
+  border: 1px solid rgba(140,0,200,0.3);
+  color: #9b30ff; font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 18px; width: 70px; text-align: center;
+  padding: 4px; border-radius: 3px; outline: none;
+}
+.beat-bpm-input:focus { border-color: #9b30ff; box-shadow: 0 0 10px rgba(140,0,255,0.3); }
+
+/* ── Sequencer Grid ── */
+.beat-sequencer {
+  background: linear-gradient(135deg, rgba(8,3,15,0.97), rgba(4,1,10,0.99));
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; overflow: hidden;
+}
+.beat-grid-row {
+  display: flex; align-items: stretch;
+  border-bottom: 1px solid rgba(140,0,200,0.06);
+}
+.beat-grid-row:last-child { border-bottom: none; }
+
+.beat-row-label {
+  width: 90px; flex-shrink: 0;
+  background: rgba(4,1,10,0.9);
+  border-right: 1px solid rgba(140,0,200,0.15);
+  display: flex; align-items: center; padding: 0 14px;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: #e2c2ff; font-weight: 600; letter-spacing: 2px;
+}
+.beat-row-label span {
+  display: inline-block; width: 8px; height: 8px;
+  border-radius: 50%; margin-right: 8px; opacity: 0.7;
+}
+
+.beat-steps { display: flex; flex: 1; }
+.beat-step {
+  flex: 1; height: 44px;
+  border-right: 1px solid rgba(140,0,200,0.05);
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.15s;
+  position: relative;
+}
+.beat-step:last-child { border-right: none; }
+.beat-step:nth-child(4n+1) { background: rgba(140,0,200,0.03); }
+.beat-step.active {
+  background: linear-gradient(135deg, #5a008a, #7700cc);
+  box-shadow: inset 0 0 10px rgba(200,100,255,0.2);
+}
+.beat-step.active::after {
+  content: ''; position: absolute; inset: 3px;
+  background: rgba(255,255,255,0.1); border-radius: 2px;
+}
+.beat-step.current-step {
+  outline: 2px solid rgba(200,100,255,0.5);
+  outline-offset: -2px;
+}
+.beat-step:hover:not(.active) { background: rgba(140,0,200,0.12); }
+
+.beat-step-numbers { display: flex; flex: 1; }
+.beat-step-num {
+  flex: 1; text-align: center; font-family: 'Cinzel', var(--font-mono);
+  font-size: 7px; color: #9d75e3; padding: 4px 0;
+  border-right: 1px solid rgba(140,0,200,0.03);
+}
+.beat-step-num:nth-child(4n+1) { color: #cba3ff; }
+
+/* ── Synth Controls ── */
+.beat-synth-panel {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+  background: linear-gradient(135deg, rgba(8,3,15,0.97), rgba(4,1,10,0.99));
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+}
+.synth-knob-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.synth-knob-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: #cba3ff; letter-spacing: 2px;
+}
+.synth-knob {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #1a0a2a 0%, #080310 100%);
+  border: 2px solid rgba(140,0,200,0.25);
+  position: relative; cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.7), inset 0 1px 0 rgba(180,80,255,0.05);
+  transition: border-color 0.2s;
+}
+.synth-knob:hover { border-color: #9b30ff; box-shadow: 0 0 14px rgba(140,0,255,0.2); }
+.synth-knob-tick {
+  position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+  width: 2px; height: 12px;
+  background: linear-gradient(to bottom, #bf60ff, #7700cc);
+  border-radius: 1px; transform-origin: bottom center;
+  box-shadow: 0 0 6px rgba(180,80,255,0.5);
+}
+.synth-knob-value {
+  font-family: 'Cinzel', var(--font-mono); font-size: 10px; color: #e2c2ff;
+}
+
+/* ── Recording ── */
+.beat-record-panel {
+  display: flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, rgba(8,3,15,0.97), rgba(4,1,10,0.99));
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 16px 24px;
+}
+.beat-record-status {
+  font-family: 'Cinzel', var(--font-mono); font-size: 11px;
+  color: #cba3ff; flex: 1; letter-spacing: 2px;
+}
+.beat-record-status.recording { color: #ff4455; animation: recPulse 0.8s infinite; }
+.beat-download-btn {
+  background: rgba(4,1,10,0.9);
+  border: 1px solid rgba(0,180,80,0.4);
+  color: rgba(0,200,80,0.7);
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  padding: 8px 18px; cursor: pointer; border-radius: 3px;
+  letter-spacing: 2px; transition: all 0.2s; display: none;
+}
+.beat-download-btn:hover { background: rgba(0,100,40,0.2); color: #00ff66; }
+.beat-download-btn.visible { display: block; }
+
+/* ── Sequencer Row Preset Dropdowns ── */
+.beat-row-preset-select {
+  background: rgba(8,3,15,0.95);
+  border: 1px solid rgba(140,0,200,0.2);
+  color: #dfb5ff;
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  width: 90px;
+}
+.beat-row-preset-select:hover, .beat-row-preset-select:focus {
+  border-color: #9b30ff;
+  box-shadow: 0 0 6px rgba(140,0,255,0.25);
+  color: #c8920a;
+}
+.beat-row-preset-select option {
+  background: #080310;
+  color: #dfb5ff;
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 9px;
+}
+
+/* ── Gothic Keyboard Panel (Coven Synthesizer) ── */
+.beat-keyboard-panel {
+  background: linear-gradient(135deg, rgba(8,3,15,0.97), rgba(4,1,10,0.99));
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative;
+}
+.beat-keyboard-title {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 11px; letter-spacing: 5px;
+  color: #df80ff; text-align: center;
+  text-shadow: 0 0 10px rgba(140,0,255,0.3);
+  border-bottom: 1px solid var(--sat-border);
+  padding-bottom: 10px;
+}
+.beat-instrument-select-row {
+  display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+}
+.beat-inst-btn {
+  background: rgba(4,1,10,0.9);
+  border: 1px solid rgba(140,0,200,0.25);
+  color: #bda0ff;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  padding: 6px 14px; cursor: pointer; border-radius: 3px;
+  letter-spacing: 1px; transition: all 0.2s;
+}
+.beat-inst-btn:hover {
+  border-color: #9b30ff; color: #9b30ff;
+}
+.beat-inst-btn.active {
+  background: linear-gradient(135deg, #4a0080, #7700cc);
+  color: #fff; border-color: #9b30ff;
+  box-shadow: 0 0 12px rgba(120,0,200,0.35);
+}
+
+.beat-keyboard-keys-wrap {
+  display: flex; justify-content: center; padding: 10px 0;
+}
+.beat-keyboard-keys {
+  display: flex; position: relative;
+  background: #080310; border: 1.5px solid var(--sat-border);
+  border-radius: 4px; padding: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+.kb-key {
+  position: relative; cursor: pointer; user-select: none;
+  transition: all 0.1s ease;
+}
+.kb-key.white {
+  width: 42px; height: 125px;
+  background: linear-gradient(to bottom, #150d22 0%, #080310 100%);
+  border: 1px solid rgba(140,0,200,0.2);
+  border-radius: 0 0 3px 3px; z-index: 1;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  align-items: center; padding-bottom: 8px;
+}
+.kb-key.white:hover {
+  background: linear-gradient(to bottom, #2a1540 0%, #080310 100%);
+}
+.kb-key.white.active {
+  background: linear-gradient(to bottom, #5a008a 0%, #7700cc 100%);
+  box-shadow: 0 0 12px rgba(140,0,255,0.4);
+  transform: translateY(2px);
+  border-color: #9b30ff;
+}
+
+.kb-key.black {
+  width: 26px; height: 80px;
+  background: linear-gradient(to bottom, #05010a 0%, #1c0530 100%);
+  border: 1px solid rgba(140,0,200,0.45);
+  border-radius: 0 0 2px 2px;
+  z-index: 2; margin-left: -13px; margin-right: -13px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  align-items: center; padding-bottom: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+}
+.kb-key.black:hover {
+  background: linear-gradient(to bottom, #100220 0%, #3a0b60 100%);
+}
+.kb-key.black.active {
+  background: linear-gradient(to bottom, #7700cc 0%, #a83cff 100%);
+  box-shadow: 0 0 15px rgba(140,0,255,0.6);
+  transform: translateY(2px);
+  border-color: #bf60ff;
+}
+
+.key-note {
+  font-family: 'Cinzel', var(--font-mono); font-size: 7px;
+  color: #bda0ff; letter-spacing: 0.5px;
+}
+.kb-key.active .key-note {
+  color: #fff; text-shadow: 0 0 4px #fff;
+}
+.key-char {
+  font-family: var(--font-mono); font-size: 8px; font-weight: bold;
+  color: #dfb5ff; margin-top: 2px;
+}
+.kb-key.active .key-char {
+  color: #c8920a; text-shadow: 0 0 4px rgba(200,146,10,0.5);
+}

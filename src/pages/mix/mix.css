@@ -1,0 +1,449 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — MIX MODULE STYLES  ⛧ SATANIC EDITION ⛧
+   ========================================================================== */
+
+/* ── Occult font import ── */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&display=swap');
+
+/* ── CSS variables (local override) ── */
+.mix-container {
+  --sat-red:    #cc0022;
+  --sat-gold:   #c8920a;
+  --sat-amber:  rgba(200,146,10,0.18);
+  --sat-border: rgba(200,146,10,0.28);
+  --sat-glow:   rgba(200,80,0,0.35);
+  padding: 28px 36px;
+  min-height: calc(100vh - 62px);
+  display: flex; flex-direction: column; gap: 22px;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(120,20,0,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(80,10,0,0.15) 0%, transparent 60%),
+    var(--bg-pure);
+  position: relative;
+}
+
+/* Arka plan okült süsü (pentagram) */
+.mix-container::before {
+  content: '⛧';
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 420px;
+  color: rgba(180,30,0,0.028);
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.mix-container > * { position: relative; z-index: 1; }
+
+/* ── Header ── */
+.mix-header {
+  display: flex; align-items: center; gap: 16px;
+  font-family: 'Cinzel', var(--font-mono);
+  border-bottom: 1px solid var(--sat-border);
+  padding-bottom: 16px;
+}
+.mix-header h2 {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 16px; letter-spacing: 6px;
+  color: var(--sat-gold);
+  text-shadow: 0 0 14px var(--sat-glow), 0 0 30px rgba(180,60,0,0.2);
+}
+.mix-header-badge {
+  background: var(--sat-amber);
+  border: 1px solid var(--sat-border);
+  color: var(--sat-gold); font-size: 10px; padding: 3px 10px;
+  border-radius: 2px; letter-spacing: 2px;
+  font-family: 'Cinzel', var(--font-mono);
+}
+
+/* ── Turntable Decks ── */
+.mix-decks {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px;
+  align-items: start;
+}
+
+.deck {
+  background: linear-gradient(135deg, rgba(20,8,0,0.95) 0%, rgba(10,4,0,0.98) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: inset 0 1px 0 rgba(200,146,10,0.08);
+}
+.deck.active {
+  border-color: var(--sat-red);
+  box-shadow: 0 0 22px rgba(180,0,30,0.2), inset 0 1px 0 rgba(200,0,30,0.15);
+}
+
+.deck-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 10px;
+  letter-spacing: 4px; color: #ffcc66;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.deck-label span { color: var(--sat-red); }
+
+/* Turntable */
+.turntable-wrap {
+  display: flex; justify-content: center; align-items: center;
+  padding: 10px 0;
+}
+.turntable {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    #1a0a00 0%, #0a0400 40%, #050200 70%, #000 100%);
+  border: 2px solid #2a1000;
+  position: relative; cursor: pointer;
+  box-shadow:
+    0 0 0 4px #0a0400,
+    0 0 0 6px #1a0800,
+    0 0 30px rgba(0,0,0,0.9),
+    0 0 60px rgba(0,0,0,0.5);
+  transition: box-shadow 0.3s ease;
+}
+.turntable.spinning {
+  animation: vinylSpin linear infinite;
+  box-shadow:
+    0 0 0 4px #0a0400,
+    0 0 0 6px #2a0a00,
+    0 0 30px rgba(180,30,0,0.2),
+    0 0 60px rgba(100,10,0,0.15);
+}
+.turntable-grooves {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-radial-gradient(circle at center,
+    transparent 0px, transparent 8px,
+    rgba(200,100,0,0.04) 9px, transparent 10px);
+}
+.turntable-label {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 54px; height: 54px; border-radius: 50%;
+  background: radial-gradient(circle, #8b0010 0%, #3a0005 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel Decorative', var(--font-mono); font-size: 6px;
+  color: rgba(255,200,100,0.8); letter-spacing: 1px;
+  text-align: center; line-height: 1.4;
+  border: 1px solid rgba(200,80,0,0.4);
+  box-shadow: 0 0 12px rgba(180,0,30,0.5), inset 0 0 8px rgba(0,0,0,0.8);
+}
+.turntable-spindle {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #5a3000; border: 1px solid #8b5000;
+  box-shadow: 0 0 4px rgba(200,120,0,0.3);
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes scratchStutter {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-35deg); }
+  70% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+.turntable.scratching {
+  animation: scratchStutter 0.15s ease-out !important;
+}
+
+/* Waveform */
+.waveform-canvas-wrap {
+  width: 100%; height: 50px;
+  background: #050200; border: 1px solid rgba(200,80,0,0.15);
+  border-radius: 4px; overflow: hidden;
+}
+.waveform-canvas { width: 100%; height: 100%; display: block; }
+
+/* Deck Controls */
+.deck-controls {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+}
+.deck-btn {
+  background: rgba(10,4,0,0.9);
+  border: 1px solid rgba(200,146,10,0.25);
+  color: #ffd880;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  padding: 8px 6px; cursor: pointer; border-radius: 3px;
+  letter-spacing: 1px; transition: all 0.2s ease; text-align: center;
+}
+.deck-btn:hover {
+  border-color: var(--sat-red);
+  color: var(--sat-red);
+  background: rgba(150,0,20,0.1);
+  text-shadow: 0 0 8px rgba(200,0,30,0.5);
+}
+.deck-btn.play-btn.active {
+  background: linear-gradient(135deg, #8b0010 0%, #cc0022 100%);
+  color: #fff; border-color: var(--sat-red);
+  box-shadow: 0 0 14px rgba(200,0,30,0.4);
+}
+
+.deck-slider-row { display: flex; flex-direction: column; gap: 6px; }
+.deck-slider-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: #ffd880; letter-spacing: 2px;
+  display: flex; justify-content: space-between;
+}
+.deck-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 2px; border-radius: 1px;
+  background: rgba(200,80,0,0.2); outline: none; cursor: pointer;
+}
+.deck-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 14px; height: 14px;
+  border-radius: 50%; background: var(--sat-gold);
+  box-shadow: 0 0 8px rgba(200,120,0,0.6); cursor: pointer;
+}
+
+/* ── Crossfader ── */
+.mix-crossfader-panel {
+  background: linear-gradient(135deg, rgba(15,6,0,0.95) 0%, rgba(8,3,0,0.98) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  min-width: 180px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+}
+.crossfader-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: #ffd880; letter-spacing: 3px; text-align: center;
+}
+.crossfader-track {
+  width: 100%; height: 3px;
+  background: rgba(200,80,0,0.15);
+  border-radius: 2px; position: relative;
+}
+.crossfader-fill {
+  position: absolute; height: 100%;
+  background: linear-gradient(90deg, var(--sat-red), var(--sat-gold));
+  border-radius: 2px;
+}
+input#crossfader {
+  -webkit-appearance: none; width: 100%; height: 3px;
+  background: transparent; outline: none; cursor: pointer; margin: 0;
+}
+input#crossfader::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px;
+  border-radius: 2px; background: rgba(15,6,0,0.95);
+  border: 2px solid var(--sat-gold);
+  box-shadow: 0 0 10px rgba(200,120,0,0.5);
+  cursor: grab;
+}
+
+/* ── Channel Panel ── */
+.mix-channel-panel {
+  display: grid; grid-template-columns: repeat(6,1fr); gap: 10px;
+  background: linear-gradient(135deg, rgba(15,6,0,0.95) 0%, rgba(8,3,0,0.98) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+}
+.channel-strip {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  border-right: 1px solid rgba(200,80,0,0.12); padding-right: 10px;
+}
+.channel-strip:last-child { border-right: none; padding-right: 0; }
+.channel-name {
+  font-family: 'Cinzel', var(--font-mono); font-size: 8px;
+  color: #ffd880; letter-spacing: 1px;
+}
+.channel-fader {
+  -webkit-appearance: none; writing-mode: vertical-lr; direction: rtl;
+  width: 3px; height: 100px; cursor: pointer;
+  background: rgba(200,80,0,0.15); border-radius: 2px; outline: none;
+}
+.channel-fader::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 24px; height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #1a0800, #0a0400);
+  border: 1px solid rgba(200,120,0,0.4); cursor: grab;
+}
+.channel-meter {
+  width: 6px; height: 80px;
+  background: rgba(5,2,0,0.9); border: 1px solid rgba(200,80,0,0.15);
+  border-radius: 2px; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.channel-meter-fill {
+  width: 100%;
+  background: linear-gradient(to top, #8b0010, #cc4400, #cc8800);
+  transition: height 0.05s;
+}
+.channel-mute {
+  background: none; border: 1px solid rgba(200,80,0,0.3);
+  color: #ffa64d;
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 8px; padding: 3px 6px; cursor: pointer; border-radius: 2px;
+  transition: all 0.2s; letter-spacing: 1px;
+}
+.channel-mute.muted {
+  background: var(--sat-red); color: #fff;
+  border-color: var(--sat-red);
+  box-shadow: 0 0 8px rgba(180,0,20,0.4);
+}
+
+/* BPM Badge */
+.bpm-badge {
+  background: var(--sat-amber);
+  border: 1px solid var(--sat-border);
+  border-radius: 4px; padding: 6px 14px; text-align: center;
+}
+.bpm-value { font-size: 28px; color: var(--sat-gold); font-weight: 900; font-family: 'Cinzel Decorative', sans-serif; }
+.bpm-label { font-size: 9px; color: #ffd880; letter-spacing: 3px; }
+
+/* ── Audio Upload Panel ── */
+.mix-upload-panel {
+  background: linear-gradient(135deg, rgba(15,4,0,0.97) 0%, rgba(8,2,0,0.99) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.mix-upload-title {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 11px; letter-spacing: 5px;
+  color: var(--sat-gold);
+  text-shadow: 0 0 10px var(--sat-glow);
+  border-bottom: 1px solid var(--sat-border);
+  padding-bottom: 10px;
+}
+.mix-upload-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.mix-upload-deck {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.mix-upload-label {
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 9px; letter-spacing: 3px;
+  color: #ffd880;
+}
+.mix-upload-drop {
+  border: 1px dashed rgba(200,80,0,0.35);
+  border-radius: 6px; padding: 18px 12px;
+  text-align: center; cursor: pointer;
+  background: rgba(10,3,0,0.8);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.mix-upload-drop:hover,
+.mix-upload-drop.drag-over {
+  border-color: var(--sat-gold);
+  background: rgba(80,30,0,0.12);
+  box-shadow: 0 0 20px rgba(150,80,0,0.12);
+}
+.mix-upload-drop input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+}
+.mix-upload-icon {
+  font-size: 22px; margin-bottom: 6px; display: block;
+  color: rgba(200,80,0,0.5);
+}
+.mix-upload-text {
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 9px; letter-spacing: 2px;
+  color: #ffa64d;
+  line-height: 1.5;
+}
+.mix-upload-filename {
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 9px; color: var(--sat-gold);
+  letter-spacing: 1px; margin-top: 4px;
+  word-break: break-all;
+}
+.mix-upload-controls {
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+}
+.mix-upload-btn {
+  background: rgba(10,4,0,0.9);
+  border: 1px solid rgba(200,80,0,0.35);
+  color: #ffb84d;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  padding: 7px 14px; cursor: pointer; border-radius: 3px;
+  letter-spacing: 1px; transition: all 0.2s;
+}
+.mix-upload-btn:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  border-color: rgba(200,146,10,0.08);
+  color: rgba(200,146,10,0.25);
+}
+.mix-upload-btn:hover {
+  border-color: var(--sat-red); color: var(--sat-red);
+  background: rgba(120,0,10,0.12);
+}
+.mix-upload-btn.active {
+  background: rgba(120,0,10,0.3);
+  border-color: var(--sat-red); color: #ff4455;
+  box-shadow: 0 0 10px rgba(180,0,20,0.3);
+}
+.mix-upload-progress {
+  width: 100%; height: 2px;
+  background: rgba(200,80,0,0.12);
+  border-radius: 1px; overflow: hidden;
+  margin-top: 2px;
+}
+.mix-upload-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sat-red), var(--sat-gold));
+  border-radius: 1px;
+  transition: width 0.1s linear;
+  width: 0%;
+}
+.mix-upload-time {
+  font-family: 'Cinzel', var(--font-mono);
+  font-size: 9px; color: #ffd880;
+  letter-spacing: 1px;
+}
+
+/* ── Frequency Shaper (Deck EQ) ── */
+.deck-eq-panel {
+  border: 1px solid var(--sat-border);
+  border-radius: 6px; padding: 14px;
+  background: rgba(10,3,0,0.4);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.deck-eq-title {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 8px; letter-spacing: 3px;
+  color: var(--sat-gold); text-align: center;
+}
+.eq-curve-canvas {
+  width: 100%; height: 60px;
+  background: #050200; border: 1px solid rgba(200,80,0,0.12);
+  border-radius: 4px; display: block;
+}
+.deck-eq-knobs {
+  display: flex; justify-content: space-around; align-items: center;
+}
+.eq-knob-group {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.eq-knob-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 7px;
+  color: #ffd880; letter-spacing: 1px;
+}
+.eq-knob {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: radial-gradient(circle, #2a0e00 0%, #0c0400 100%);
+  border: 1.5px solid var(--sat-border);
+  position: relative; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8), 0 2px 6px rgba(0,0,0,0.5);
+  transition: border-color 0.2s;
+}
+.eq-knob:hover {
+  border-color: var(--sat-gold);
+}
+.eq-knob-tick {
+  position: absolute; top: 0; left: 50%;
+  width: 2px; height: 16px; background: var(--sat-gold);
+  border-radius: 1px;
+  box-shadow: 0 0 6px rgba(200,120,0,0.7);
+}
+.eq-knob-value {
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--sat-gold); letter-spacing: 0.5px;
+}

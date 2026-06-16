@@ -1,0 +1,13 @@
+/* ══ Vol.3 Theme — Rusted Metal Orange ══ */
+:root {
+  --theme-accent:     #e67300;
+  --theme-accent-glow:rgba(230,115,0,0.4);
+  --theme-accent-rgb: 230,115,0;
+  --theme-bg:         #0d0800;
+  --theme-border:     #3d2514;
+}
+.detail-view-container {
+  background: linear-gradient(180deg, #0d0800 0%, #1a1005 100%);
+}
+.detail-album-title { font-family: var(--font-mono); font-weight: 900; }
+.track-row.playing { box-shadow: inset 3px 0 0 #e67300; }

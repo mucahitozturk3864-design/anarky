@@ -1,0 +1,13 @@
+/* ══ MMLP Theme — Dark Grungy Detroit ══ */
+:root {
+  --theme-accent:      #ff003c;
+  --theme-accent-glow: rgba(255,0,60,0.4);
+  --theme-accent-rgb:  255,0,60;
+  --theme-bg:          #050304;
+  --theme-border:      #1c1010;
+}
+.detail-view-container {
+  background: #050304;
+}
+.detail-album-title { font-family: var(--font-mono); }
+.track-row.playing  { box-shadow: inset 3px 0 0 #ff003c; }

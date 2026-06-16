@@ -1,0 +1,111 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — WASM SIMULATION PANEL STYLES
+   ========================================================================== */
+
+.wasm-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(10,10,15,0.9);
+  position: sticky; top: 0; z-index: 10;
+}
+.wasm-title {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--accent-red); letter-spacing: 3px; font-weight: 600;
+}
+.wasm-close-btn {
+  background: none; border: 1px solid var(--text-dark);
+  color: var(--text-muted); width: 26px; height: 26px;
+  cursor: pointer; border-radius: 3px;
+  font-size: 12px; transition: all var(--t-fast);
+  display: flex; align-items: center; justify-content: center;
+}
+.wasm-close-btn:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+.wasm-body { padding: 16px; display: flex; flex-direction: column; gap: 20px; }
+
+.wasm-section-title {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-muted); letter-spacing: 3px;
+  text-transform: uppercase; margin-bottom: 10px;
+  display: flex; justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color); padding-bottom: 6px;
+}
+
+/* Engine Switcher */
+.wasm-engine-switch { display: flex; gap: 6px; }
+.wasm-switch-btn {
+  background: var(--bg-pure); border: 1px solid var(--border-color);
+  color: var(--text-muted); font-family: var(--font-mono); font-size: 10px;
+  padding: 6px 12px; cursor: pointer; border-radius: 3px;
+  transition: all var(--t-fast); letter-spacing: 1px;
+}
+.wasm-switch-btn.active { color: #fff; border-color: var(--accent-red); background: rgba(255,0,60,0.1); }
+.wasm-switch-btn.wasm-mode { color: var(--accent-green); border-color: var(--accent-green); background: rgba(0,255,102,0.07); }
+
+/* C Code Block */
+.wasm-code-block {
+  background: #08080d; border: 1px solid #1a1a28;
+  border-radius: 4px; padding: 12px;
+  font-family: var(--font-mono); font-size: 10px;
+  color: #7a8099; line-height: 1.7;
+  white-space: pre-wrap; overflow-x: auto;
+  max-height: 200px; overflow-y: auto;
+}
+.wasm-c-type    { color: #c792ea; }
+.wasm-c-keyword { color: #82aaff; }
+.wasm-c-def     { color: #ffcb6b; }
+.wasm-c-comment { color: #546e7a; font-style: italic; }
+.wasm-c-str     { color: #c3e88d; }
+
+/* Memory Heap Map */
+.wasm-memory-map {
+  display: flex; flex-direction: column; gap: 4px;
+  max-height: 160px; overflow-y: auto;
+}
+.wasm-mem-cell {
+  display: grid; grid-template-columns: 1fr auto auto auto;
+  gap: 8px; align-items: center;
+  background: var(--bg-pure); border: 1px solid var(--border-color);
+  padding: 6px 10px; border-radius: 3px;
+  font-family: var(--font-mono); font-size: 10px;
+  transition: all 0.2s;
+}
+.wasm-mem-cell.active-write {
+  border-color: var(--accent-red);
+  background: rgba(255,0,60,0.05);
+  box-shadow: 0 0 6px var(--accent-red-glow);
+}
+.wasm-mem-cell.active-read {
+  border-color: var(--accent-green);
+  background: rgba(0,255,102,0.05);
+}
+
+/* Performance Chart */
+.wasm-performance-chart {
+  display: flex; align-items: flex-end; gap: 2px;
+  height: 80px; overflow: hidden;
+  background: var(--bg-pure); border: 1px solid var(--border-color);
+  padding: 6px; border-radius: 3px;
+}
+.wasm-chart-bar {
+  flex: 1; min-width: 3px; border-radius: 1px;
+  transition: height 0.2s ease;
+}
+.wasm-chart-bar.wasm-run { background: var(--accent-green); box-shadow: 0 0 4px var(--accent-green-glow); }
+.wasm-chart-bar.js-run   { background: var(--accent-purple); }
+
+/* Console Logs */
+.wasm-console-logs {
+  background: #05050a; border: 1px solid #13141e;
+  border-radius: 4px; padding: 10px;
+  font-family: var(--font-mono); font-size: 10px;
+  max-height: 160px; overflow-y: auto;
+  line-height: 1.7;
+}
+.wasm-log-line { color: var(--text-muted); padding: 1px 0; border-bottom: 1px solid #0a0a12; }
+.wasm-log-line.wasm-info    { color: #64748b; }
+.wasm-log-line.wasm-success { color: var(--accent-green); }
+.wasm-log-line.wasm-warn    { color: #f59e0b; }
+.wasm-log-line.wasm-error   { color: var(--accent-red); }

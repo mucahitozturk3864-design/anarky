@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ANARKY - Dark Gothic Music Production DAW. Built with high performance C/WebAssembly simulation and Web Audio API.">
+  <meta name="theme-color" content="#050507">
+  <title>ANARKY // DARK DAW &amp; SOUND LAB</title>
+
+  <!-- Global Core Stylesheet -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Album theme override (dynamically swapped per album) -->
+  <link id="album-theme-styles" rel="stylesheet" href="">
+</head>
+<body>
+
+  <!-- Screen overlays -->
+  <div class="crt-overlay"></div>
+  <div class="crt-vignette"></div>
+
+  <!-- 7-Second Glitch Intro Screen -->
+  <section id="intro-screen">
+    <!-- Intro background video -->
+    <video
+      id="intro-bg-video"
+      muted
+      playsinline
+      loop
+      style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.22;z-index:0;pointer-events:none;"
+    ></video>
+    <div class="intro-noise-canvas-wrap">
+      <canvas id="intro-noise-canvas"></canvas>
+    </div>
+    <div class="intro-glitch-wrapper">
+      <h1 class="intro-logo glitch-gpu" id="intro-logo">ANARKY</h1>
+      <div class="intro-subtext">INTELLIGENT AUDIO SYSTEM // BOOTING v2.0.0</div>
+
+      <div class="intro-terminal-logs" id="intro-terminal">
+        <!-- Lines will be injected dynamically via JS -->
+      </div>
+    </div>
+
+    <button class="intro-skip-btn" id="intro-skip">BYPASS BOOT SEQUENCE [ESC]</button>
+  </section>
+
+  <!-- Category Transition Screen (Video + Canvas Fallback) -->
+  <section id="transition-screen">
+    <!-- Real video element — shown when .mp4 is available -->
+    <video
+      id="transition-video"
+      class="transition-video-el"
+      muted
+      playsinline
+      preload="none"
+      style="display:none;"
+    ></video>
+
+    <!-- Canvas fallback animation (shown when no video file exists) -->
+    <div class="transition-studio-bg" id="transition-bg"></div>
+    <canvas class="transition-canvas" id="transition-canvas"></canvas>
+
+    <div class="transition-loader-container" id="transition-loader">
+      <!-- Dynamic album SVG target (album-detail transitions only) -->
+      <div id="transition-graphic-container" class="transition-graphic-container"></div>
+
+      <h2 class="transition-title" id="transition-title">INITIALIZING</h2>
+      <div class="transition-subtext" id="transition-subtext">CONNECTING C-WASM DSP STACK...</div>
+      <div class="transition-bar-outer">
+        <div class="transition-bar-inner" id="transition-progress"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audio Activation Overlay (Required for Web Audio) -->
+  <div id="audio-auth-modal">
+    <div class="auth-modal-card">
+      <div class="auth-modal-icon">⚡</div>
+      <h3 class="auth-modal-title">AUDIO INTERFACE ACCESS</h3>
+      <p class="auth-modal-body">This application requires Web Audio access for the synthesizers, voice processor, and sound effects to initialize.</p>
+      <button id="btn-auth-audio" class="auth-engage-btn">ENGAGE SYSTEM</button>
+    </div>
+  </div>
+
+  <!-- Main DAW App Shell -->
+  <div class="app-container" id="app-shell" style="display: none;">
+
+    <!-- App Header -->
+    <header class="app-header">
+      <div class="logo-container">
+        <a href="#menu" class="logo-anarky" id="nav-logo">ANARKY</a>
+        <span class="logo-version">v2.0</span>
+      </div>
+
+      <!-- Nav Category Buttons -->
+      <nav class="header-nav" id="header-nav">
+        <a href="#mix" class="header-nav-btn" data-route="mix">MIX</a>
+        <a href="#beat" class="header-nav-btn" data-route="beat">BEAT</a>
+        <a href="#vokal" class="header-nav-btn" data-route="vokal">VOKAL</a>
+        <a href="#discography" class="header-nav-btn" data-route="discography">DISCOGRAPHY</a>
+      </nav>
+
+      <div class="header-status">
+        <div class="status-item">
+          <span>DSP:</span>
+          <span class="status-indicator"></span>
+          <span id="dsp-engine-label" style="color: var(--accent-green);">C/WASM</span>
+        </div>
+        <div class="status-item">
+          <span>SR:</span>
+          <span style="color: var(--text-main);">48kHz</span>
+        </div>
+        <div class="status-item">
+          <span>LAT:</span>
+          <span id="dsp-latency-label" style="color: var(--accent-green);">1.2ms</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-viewport">
+      <div class="view-content" id="router-view">
+        <!-- Pages / Modules will be dynamically injected here -->
+      </div>
+    </main>
+
+    <!-- WASM Sim Panel Toggle Button -->
+    <button class="wasm-debug-trigger" id="wasm-panel-toggle">
+      <span class="wasm-led"></span>
+      C / WASM CORE ENGINE
+    </button>
+  </div>
+
+  <!-- C/WebAssembly Simulation Drawer -->
+  <aside id="wasm-sim-panel" class="wasm-panel-closed"></aside>
+
+  <!-- Core JS Engine Loader -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>

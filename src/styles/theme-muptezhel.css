@@ -1,0 +1,14 @@
+/* ══ Müptezhel Theme — Teal Reggae Warm ══ */
+:root {
+  --theme-accent:     #2a9d8f;
+  --theme-accent-glow:rgba(42,157,143,0.4);
+  --theme-accent-rgb: 42,157,143;
+  --theme-bg:         #050e0d;
+  --theme-border:     #0d2c28;
+}
+.detail-view-container {
+  background: linear-gradient(135deg, #050e0d 0%, #0a2020 100%);
+}
+.detail-album-title { font-family: var(--font-sans); font-weight: 800; }
+.collage-item { border-color: #0d2c28; }
+.track-row.playing { box-shadow: inset 3px 0 0 #2a9d8f; }

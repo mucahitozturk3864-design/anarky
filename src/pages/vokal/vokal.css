@@ -1,0 +1,190 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — VOKAL MODULE STYLES  ⛧ SATANIC EDITION ⛧
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&display=swap');
+
+.vokal-container {
+  --sat-green:  #00aa44;
+  --sat-border: rgba(0,180,70,0.22);
+  --sat-glow:   rgba(0,200,80,0.3);
+  padding: 28px 36px;
+  min-height: calc(100vh - 62px);
+  display: flex; flex-direction: column; gap: 22px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,60,20,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 50% 100%, rgba(0,40,15,0.1) 0%, transparent 60%),
+    var(--bg-pure);
+  position: relative;
+}
+
+/* Arka plan okült süsü */
+.vokal-container::before {
+  content: '☠';
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 380px;
+  color: rgba(0,150,50,0.03);
+  pointer-events: none; z-index: 0; user-select: none;
+}
+.vokal-container > * { position: relative; z-index: 1; }
+
+/* ── Header ── */
+.vokal-header {
+  display: flex; align-items: center; gap: 16px;
+  border-bottom: 1px solid var(--sat-border); padding-bottom: 16px;
+}
+.vokal-header h2 {
+  font-family: 'Cinzel Decorative', var(--font-mono);
+  font-size: 16px; letter-spacing: 6px;
+  color: #00cc55;
+  text-shadow: 0 0 14px rgba(0,200,80,0.5), 0 0 30px rgba(0,150,50,0.25);
+}
+.vokal-status-badge {
+  background: rgba(0,180,70,0.1);
+  border: 1px solid rgba(0,180,70,0.25);
+  color: #00cc55; font-family: 'Cinzel', var(--font-mono); font-size: 10px;
+  padding: 3px 10px; border-radius: 2px; letter-spacing: 2px;
+}
+.vokal-status-badge.recording { animation: recPulse 0.8s infinite; }
+
+/* ── Main Layout ── */
+.vokal-main { display: grid; grid-template-columns: 1fr 340px; gap: 20px; flex: 1; }
+
+/* ── Mic Panel ── */
+.vokal-mic-panel {
+  background: linear-gradient(135deg, rgba(0,12,5,0.97) 0%, rgba(0,6,3,0.99) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 24px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+
+.mic-visualizer {
+  position: relative; height: 100px;
+  background: rgba(0,5,2,0.95);
+  border: 1px solid rgba(0,150,50,0.18);
+  border-radius: 6px; overflow: hidden;
+}
+.mic-canvas { width: 100%; height: 100%; display: block; }
+.mic-vis-label {
+  position: absolute; top: 8px; left: 12px;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: rgba(0,180,70,0.45); letter-spacing: 2px;
+}
+.mic-vis-level {
+  position: absolute; top: 8px; right: 12px;
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: #00cc55;
+}
+
+.mic-controls { display: flex; gap: 10px; }
+.mic-btn {
+  flex: 1;
+  background: rgba(0,6,3,0.9);
+  border: 1px solid rgba(0,150,50,0.22);
+  color: rgba(0,180,70,0.5);
+  font-family: 'Cinzel', var(--font-mono); font-size: 10px;
+  padding: 12px; cursor: pointer; border-radius: 5px;
+  letter-spacing: 2px; transition: all 0.2s; text-align: center;
+}
+.mic-btn.arm-btn:hover    { border-color: #cc0022; color: #cc0022; background: rgba(100,0,15,0.1); }
+.mic-btn.arm-btn.armed    {
+  background: rgba(100,0,15,0.3); color: #ff4455;
+  border-color: #cc0022;
+  box-shadow: 0 0 16px rgba(180,0,30,0.3);
+  animation: recPulse 1.2s infinite;
+}
+.mic-btn.play-btn:hover   { border-color: #00cc55; color: #00cc55; background: rgba(0,80,25,0.12); }
+.mic-btn.play-btn.active  {
+  background: rgba(0,100,35,0.3); color: #00ff66;
+  border-color: #00cc55;
+  box-shadow: 0 0 14px rgba(0,200,80,0.25);
+}
+
+/* Chain display */
+.vokal-chain-display {
+  background: rgba(0,4,2,0.9);
+  border: 1px solid rgba(0,150,50,0.15);
+  border-radius: 6px; padding: 14px;
+  font-family: 'Cinzel', var(--font-mono); font-size: 10px;
+  color: rgba(0,180,70,0.5);
+}
+.chain-title { letter-spacing: 3px; margin-bottom: 10px; font-size: 9px; color: rgba(0,150,50,0.4); }
+.chain-items { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; }
+.chain-item {
+  background: rgba(0,180,70,0.08);
+  border: 1px solid rgba(0,180,70,0.22);
+  color: #00cc55; padding: 3px 10px; border-radius: 2px;
+  font-size: 9px; letter-spacing: 1px;
+  display: flex; align-items: center; gap: 6px;
+}
+.chain-item button {
+  background: none; border: none; color: rgba(0,180,70,0.4);
+  cursor: pointer; font-size: 10px; padding: 0; line-height: 1;
+}
+.chain-item button:hover { color: #cc0022; }
+
+/* ── Effects Grid ── */
+.vokal-effects-panel {
+  background: linear-gradient(135deg, rgba(0,10,4,0.97) 0%, rgba(0,5,2,0.99) 100%);
+  border: 1px solid var(--sat-border);
+  border-radius: 8px; padding: 20px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.effects-title {
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px;
+  color: rgba(0,180,70,0.4); letter-spacing: 4px;
+  border-bottom: 1px solid rgba(0,150,50,0.15); padding-bottom: 10px;
+}
+.effects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.effect-card {
+  background: rgba(0,5,2,0.9);
+  border: 1px solid rgba(0,150,50,0.14);
+  border-radius: 7px; padding: 14px 12px;
+  cursor: pointer; transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.effect-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--e-color, #00cc55) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}
+.effect-card:hover::before  { opacity: 0.06; }
+.effect-card.active::before { opacity: 0.12; }
+.effect-card.active {
+  border-color: var(--e-color, #00cc55);
+  box-shadow: 0 0 14px rgba(0,200,80,0.1);
+}
+
+.effect-icon { font-size: 20px; margin-bottom: 6px; }
+.effect-name {
+  font-family: 'Cinzel', var(--font-mono); font-size: 9px; font-weight: 700;
+  color: rgba(255,255,255,0.8); letter-spacing: 2px; margin-bottom: 3px;
+}
+.effect-desc { font-family: var(--font-mono); font-size: 8px; color: rgba(255,255,255,0.25); line-height: 1.4; }
+.effect-active-dot {
+  position: absolute; top: 10px; right: 10px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--e-color, #00cc55); opacity: 0;
+  box-shadow: 0 0 8px var(--e-color, #00cc55);
+  transition: opacity 0.2s;
+}
+.effect-card.active .effect-active-dot { opacity: 1; }
+
+.effect-intensity-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.effect-intensity-label {
+  font-family: 'Cinzel', var(--font-mono); font-size: 8px;
+  color: rgba(0,180,70,0.35); letter-spacing: 1px;
+}
+.effect-intensity-slider {
+  flex: 1; -webkit-appearance: none; height: 2px; border-radius: 1px;
+  background: rgba(0,150,50,0.15); outline: none; cursor: pointer;
+}
+.effect-intensity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--e-color, #00cc55); cursor: pointer;
+}
+
+@keyframes recPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }

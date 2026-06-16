@@ -1,0 +1,19 @@
+/* ══ DAMN. Theme — Absolute Minimalism ══ */
+:root {
+  --theme-accent:     #d90429;
+  --theme-accent-glow:rgba(217,4,41,0.4);
+  --theme-accent-rgb: 217,4,41;
+  --theme-bg:         #080808;
+  --theme-border:     #1a1a1a;
+}
+.detail-view-container {
+  background: #080808;
+}
+.detail-album-title {
+  font-family: 'Georgia', serif; font-weight: 900;
+  font-size: clamp(36px, 6vw, 64px) !important;
+  color: #d90429 !important;
+}
+.detail-back-btn { border-color: #1a1a1a; }
+.track-row { border-color: #111; }
+.collage-item { background: #0d0d0d; border-color: #1a1a1a; }

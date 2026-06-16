@@ -1,0 +1,17 @@
+/* ══ Taycan Theme — Chrome Monochrome ══ */
+:root {
+  --theme-accent:     #adb5bd;
+  --theme-accent-glow:rgba(173,181,189,0.35);
+  --theme-accent-rgb: 173,181,189;
+  --theme-bg:         #000000;
+  --theme-border:     #212529;
+}
+.detail-view-container {
+  background: #000;
+}
+.detail-album-title {
+  font-family: var(--font-sans); font-weight: 900;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: #f8f9fa !important; text-shadow: none !important;
+}
+.collage-item { border-color: #212529; background: #080808; }

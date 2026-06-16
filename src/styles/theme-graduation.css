@@ -1,0 +1,355 @@
+/* ==========================================================================
+   ANARKY DAW v2.0 — KANYE WEST GRADUATION THEME (Redesigned)
+   ========================================================================== */
+
+:root {
+  --ye-purple: #7a00ff;
+  --ye-yellow: #ffea00;
+  --ye-dark-text: #2d0046;
+  --ye-glass: rgba(255, 255, 255, 0.75);
+}
+
+.ye-page {
+  /* Background from the uploaded photo */
+  background: url('../../assets/images/cover-graduation.jpg') center top / cover no-repeat fixed;
+  min-height: 100vh;
+  width: 100%;
+  color: var(--ye-dark-text);
+  font-family: 'Outfit', -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── Back Button ── */
+.ye-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 36px;
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  backdrop-filter: blur(5px);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+.ye-back-btn:hover {
+  background: var(--ye-yellow);
+  color: var(--ye-dark-text);
+  transform: scale(1.05);
+}
+
+/* ── Content Container ── */
+.ye-content {
+  max-width: 900px;
+  margin: 10vh auto;
+  padding: 40px;
+  background: var(--ye-glass);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.4);
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Header inside Content ── */
+.ye-header-simple {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ye-artist-lbl {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ye-purple);
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+.ye-album-lbl {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900;
+  color: var(--ye-dark-text);
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ── Scattered Tracks (Easter Eggs) ── */
+.ye-easter-egg-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+.ye-track-scrawl {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 20px;
+  padding: 6px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+}
+.ye-track-scrawl:hover {
+  background: var(--ye-yellow);
+  transform: scale(1.2) translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 100;
+}
+.ye-track-num-lbl {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 900;
+  opacity: 0.8;
+}
+.ye-track-name-lbl {
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.ye-track-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ye-dark-text);
+  border: none;
+  color: #fff;
+  font-size: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ── Sections ── */
+.ye-section-title {
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--ye-purple);
+  border-bottom: 2px solid rgba(122, 0, 255, 0.3);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+.ye-info-card {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+.ye-info-card p {
+  margin-bottom: 16px;
+}
+.ye-info-card strong {
+  color: var(--ye-purple);
+}
+.ye-info-card em {
+  font-weight: bold;
+  font-style: normal;
+  color: #d100aa;
+}
+
+/* ── Small Scattered Photo Strips (Eminem Style) ── */
+.ye-photo-strip {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 10px 0 40px;
+  overflow: visible;
+  justify-content: center;
+}
+.ye-strip-reversed {
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+.ye-photo-frame {
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,255,255,0.7);
+  transition: transform 0.3s, z-index 0s;
+  width: 55px;
+  aspect-ratio: 3/4;
+  border-radius: 4px;
+}
+.ye-photo-frame.ye-pf-lg {
+  width: 70px;
+  aspect-ratio: 4/5;
+}
+.ye-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: grayscale(10%) contrast(1.1);
+  transition: filter 0.4s, transform 0.4s;
+}
+.ye-photo-frame:hover {
+  transform: scale(2.2) rotate(0deg) !important;
+  z-index: 50;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 0 3px var(--ye-yellow);
+}
+.ye-photo-frame:hover img {
+  filter: none;
+}
+
+/* Split grid layout */
+.ye-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .ye-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stats Badges */
+.ye-mini-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ye-mini-stat-badge {
+  background: rgba(255,255,255,0.5);
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ye-ms-val {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--ye-dark-text);
+}
+.ye-ms-lbl {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  color: var(--ye-purple);
+}
+
+/* ── Pop Quote ── */
+.ye-pop-quote {
+  background: var(--ye-purple);
+  color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ye-pop-quote blockquote {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+.ye-pop-quote cite {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+/* Footer strip */
+.ye-footer-strip {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* ── Responsive Tracklist (Mobile/Tablet fallback) ── */
+.ye-responsive-tracklist {
+  display: none;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+}
+
+.ye-tracks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ye-grid-track-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ye-grid-track-row:hover {
+  background: var(--ye-yellow);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ye-grid-track-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--ye-purple);
+  margin-right: 12px;
+}
+
+.ye-grid-track-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ye-dark-text);
+  flex-grow: 1;
+}
+
+.ye-grid-play-btn {
+  background: var(--ye-dark-text);
+  border: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ye-grid-track-row:hover .ye-grid-play-btn {
+  background: var(--ye-purple);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .ye-easter-egg-container {
+    display: none;
+  }
+  .ye-responsive-tracklist {
+    display: block;
+  }
+}
