@@ -45,7 +45,7 @@ export const ALBUM_DB = [
     themeColor: '#e67300', hasParental: true,
     cover: 'assets/images/cover-vol3.jpg',
     themeFile: 'theme-verses',
-    tracks: ['Prelude 3.0','The Blister Exists','Three Nil','Duality','Opium of the People','Circle','Welcome','Vermilion','Pulse of the Maggots','Before I Forget'],
+    tracks: ['Prelude 3.0','The Blister Exists','Three Nil','Duality','Opium of the People','Circle','Welcome','Vermilion','Pulse of the Maggots','Before I Forget','Vermilion Pt. 2','The Nameless','The Virus of Life','Danger - Keep Away'],
   },
   {
     id: 'motive-taycan', title: 'Taycan', artist: 'Motive',

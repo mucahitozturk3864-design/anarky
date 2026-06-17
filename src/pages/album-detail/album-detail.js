@@ -99,6 +99,10 @@ export function initModule(container, params) {
     container.innerHTML = buildSandikHTML();
     bindSandikTracks();
     initBgCanvas();
+  } else if (_album.id === 'slipknot-verses') {
+    container.innerHTML = buildSlipknotHTML();
+    bindSlipknotTracks();
+    initBgCanvas();
   } else {
     container.innerHTML = buildHTML();
     renderTracks();
@@ -1004,6 +1008,184 @@ function bindSandikTracks() {
 /* ══════════════════════════════════════════════════════════════════
    Generic album page (unchanged for other albums)
    ══════════════════════════════════════════════════════════════════ */
+/* ==========================================================================
+   Slipknot Vol. 3 - Brutal C Core Ritual Page
+   ========================================================================== */
+function buildSlipknotHTML() {
+  const spotifyAlbum = 'https://open.spotify.com/intl-tr/album/4ZDBQSIDIZRUBOG2OHcN3T';
+  const tracks = [
+    { title: 'Prelude 3.0', length: '3:57' },
+    { title: 'The Blister Exists', length: '5:19' },
+    { title: 'Three Nil', length: '4:48' },
+    { title: 'Duality', length: '4:12', single: true },
+    { title: 'Opium of the People', length: '3:12' },
+    { title: 'Circle', length: '4:22' },
+    { title: 'Welcome', length: '3:15' },
+    { title: 'Vermilion', length: '5:16', single: true },
+    { title: 'Pulse of the Maggots', length: '4:19' },
+    { title: 'Before I Forget', length: '4:38', single: true },
+    { title: 'Vermilion Pt. 2', length: '3:44', single: true },
+    { title: 'The Nameless', length: '4:28', single: true },
+    { title: 'The Virus of Life', length: '5:25' },
+    { title: 'Danger - Keep Away', length: '3:13' },
+  ];
+
+  const photos = [
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.35.jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.35 (1).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36.jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36 (1).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36 (2).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36 (3).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36 (4).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.36 (5).jpeg',
+    'vol 3 photos/WhatsApp Image 2026-06-17 at 16.24.37.jpeg',
+  ];
+
+  const trackRows = tracks.map((track, i) => `
+    <div class="sk-track-row" data-index="${i}" data-spotify="${spotifyAlbum}">
+      <span class="sk-track-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="sk-track-name">${track.title}</span>
+      <span class="sk-track-length">${track.length}</span>
+      <button class="sk-event-btn" data-spotify="${spotifyAlbum}">OLAY</button>
+      ${track.single ? '<span class="sk-single-mark">SINGLE</span>' : ''}
+    </div>
+  `).join('');
+
+  const photoGrid = photos.map((src, i) => `
+    <figure class="sk-photo sk-photo-${i + 1}">
+      <img src="${src}" alt="Slipknot Vol. 3 visual ${i + 1}" loading="lazy">
+    </figure>
+  `).join('');
+
+  return `
+  <div class="sk-page" id="sk-tracks">
+    <canvas class="detail-bg-canvas" id="detail-bg-canvas"></canvas>
+    <a href="#discography" class="sk-back-btn">&lt; ARCHIVE</a>
+
+    <div class="sk-symbol sk-symbol-a">⛧</div>
+    <div class="sk-symbol sk-symbol-b">9</div>
+    <div class="sk-symbol sk-symbol-c">☠</div>
+
+    <section class="sk-hero">
+      <div class="sk-hero-copy">
+        <div class="sk-kicker">ROADRUNNER // 2004 // THE NINE ACTIVE</div>
+        <h1>VOL. 3:<br><span>(THE SUBLIMINAL VERSES)</span></h1>
+        <p>
+          Slipknot's third studio album was released on May 25, 2004. The record
+          was produced by Rick Rubin, recorded during 2003-2004, and pushed the
+          band toward more melodic song structures, guitar solos and acoustic
+          textures while keeping the serrated metal impact.
+        </p>
+        <div class="sk-fact-strip">
+          <span>60:09</span>
+          <span>Nu / Alternative Metal</span>
+          <span>Producer: Rick Rubin</span>
+          <span>US Billboard 200: #2</span>
+        </div>
+      </div>
+      <div class="sk-cover-wrap">
+        <img src="${_album.cover}" alt="Vol. 3 album cover" class="sk-cover">
+        <div class="sk-cover-seal">MAGGOT MASK<br>ARTWORK NODE</div>
+      </div>
+    </section>
+
+    <section class="sk-gallery">
+      ${photoGrid}
+    </section>
+
+    <section class="sk-main-grid">
+      <div class="sk-info-block">
+        <h2>ALBUM DOSYASI</h2>
+        <p>
+          Vol. 3 is the band's only album produced by Rick Rubin. The album
+          reached platinum certification in the United States and "Before I
+          Forget" later won the Grammy Award for Best Metal Performance.
+        </p>
+        <p>
+          The cover is built around the "maggot mask" designed by Shawn Crahan:
+          stitched leather, a zipper mouth, and a fan-culture symbol turned into
+          album identity.
+        </p>
+      </div>
+
+      <div class="sk-c-core">
+        <div class="sk-panel-title">C RITUAL ENGINE // FOR + WHILE + FUNCTION</div>
+        <pre><code>typedef struct {
+  char  title[32];
+  int   seconds;
+  float aggression;
+} TrackNode;
+
+void compile_vol3(TrackNode tracks[], int count) {
+  for (int i = 0; i &lt; count; i++) {
+    apply_distortion(&amp;tracks[i], 9.0f);
+    if (tracks[i].seconds &gt; 260) {
+      open_lowpass_gate(i);
+    }
+  }
+
+  int ritual = 0;
+  while (ritual &lt; 9) {
+    sync_percussion_buffer(ritual);
+    ritual++;
+  }
+}</code></pre>
+        <div class="sk-c-runner">
+          <button id="sk-run-c-loop">RUN C LOOP</button>
+          <output id="sk-c-output">awaiting compile_vol3()</output>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-tracklist-section">
+      <div class="sk-section-head">
+        <h2>TRACKLIST BUFFER</h2>
+        <span>14 SECTORS // OLAY BUTTON -> SPOTIFY ALBUM</span>
+      </div>
+      <div class="sk-tracks-list">
+        ${trackRows}
+      </div>
+    </section>
+  </div>
+  `;
+}
+
+function bindSlipknotTracks() {
+  const container = document.getElementById('sk-tracks');
+  if (!container) return;
+
+  container.querySelectorAll('.sk-track-row, .sk-event-btn').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const row = e.target.closest('.sk-track-row');
+      const index = row ? parseInt(row.dataset.index, 10) : 0;
+      const spotify = row?.dataset.spotify || e.currentTarget.dataset.spotify;
+      toggleTrack(index, spotify);
+    });
+  });
+
+  const runButton = document.getElementById('sk-run-c-loop');
+  const output = document.getElementById('sk-c-output');
+  runButton?.addEventListener('click', e => {
+    e.stopPropagation();
+    const trackSeconds = [237, 319, 288, 252, 192, 262, 195, 316, 259, 278, 224, 268, 325, 193];
+    let distortionHits = 0;
+    let gateOpens = 0;
+    let ritual = 0;
+
+    for (let i = 0; i < trackSeconds.length; i++) {
+      distortionHits += 9;
+      if (trackSeconds[i] > 260) gateOpens++;
+    }
+
+    while (ritual < 9) ritual++;
+
+    output.textContent = `for: ${trackSeconds.length} tracks | gates: ${gateOpens} | while rituals: ${ritual} | distortion: ${distortionHits}x`;
+    WASM_SIM.log('Slipknot C loop simulation executed', 'success');
+  });
+}
+
 function buildHTML() {
   return `
   <div class="detail-view-container" id="detail-view-shell">
@@ -1178,6 +1360,37 @@ function initBgCanvas() {
   } else if (_album.id === 'hayko-sandik') {
     const pts = Array.from({length:25}, () => ({ x: Math.random()*canvas.width, y: canvas.height+20, vx:(Math.random()-0.5)*0.5, vy:-(0.3+Math.random()*0.6), a:0.3+Math.random()*0.3 }));
     const draw = () => { if(!active) return; ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{ctx.fillStyle=`rgba(199,0,57,${p.a*0.1})`; ctx.beginPath(); ctx.arc(p.x,p.y,30,0,Math.PI*2); ctx.fill(); p.x+=p.vx; p.y+=p.vy; p.a-=0.001; if(p.y<-60||p.a<=0){p.x=Math.random()*canvas.width; p.y=canvas.height+20; p.a=0.3+Math.random()*0.3;}}); _canvasAnimId=requestAnimationFrame(draw); }; draw();
+  } else if (_album.id === 'slipknot-verses') {
+    const cuts = Array.from({length:42}, () => ({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      len: 30 + Math.random()*180,
+      vx: -0.4 + Math.random()*0.8,
+      a: 0.05 + Math.random()*0.18,
+    }));
+    const draw = () => {
+      if (!active) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      cuts.forEach(c => {
+        ctx.strokeStyle = `rgba(255,38,0,${c.a})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(c.x + c.len, c.y + Math.sin(c.x * 0.01) * 18);
+        ctx.stroke();
+        c.x += c.vx;
+        if (c.x < -c.len || c.x > canvas.width + c.len) {
+          c.x = Math.random()*canvas.width;
+          c.y = Math.random()*canvas.height;
+        }
+      });
+      if (Math.random() < 0.08) {
+        ctx.fillStyle = 'rgba(255,38,0,0.055)';
+        ctx.fillRect(0, Math.random()*canvas.height, canvas.width, 2 + Math.random()*6);
+      }
+      _canvasAnimId = requestAnimationFrame(draw);
+    };
+    draw();
   }
 
   window._anarkyResizeCleanup = () => window.removeEventListener('resize', resize);
