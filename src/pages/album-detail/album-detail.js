@@ -103,6 +103,18 @@ export function initModule(container, params) {
     container.innerHTML = buildSlipknotHTML();
     bindSlipknotTracks();
     initBgCanvas();
+  } else if (_album.id === 'motive-taycan') {
+    container.innerHTML = buildTaycanHTML();
+    bindTaycanTracks();
+    initBgCanvas();
+  } else if (_album.id === 'ezhel-muptezhel') {
+    container.innerHTML = buildMuptezhelHTML();
+    bindMuptezhelTracks();
+    initBgCanvas();
+  } else if (_album.id === 'kendrick-damn') {
+    container.innerHTML = buildDamnHTML();
+    bindDamnTracks();
+    initBgCanvas();
   } else {
     container.innerHTML = buildHTML();
     renderTracks();
@@ -1186,6 +1198,757 @@ function bindSlipknotTracks() {
   });
 }
 
+/* ==========================================================================
+   Motive Taycan - Horsepower / Crown / New Turkish Rap Page
+   ========================================================================== */
+function buildTaycanHTML() {
+  const spotifyAlbum = 'https://open.spotify.com/intl-tr/album/2sBexK8GuOWjouGx1xwjRA';
+  const tracks = [
+    { title: 'dragon', length: '2:42' },
+    { title: 'mantra', length: '3:17' },
+    { title: 'tanktop', length: '4:24', feat: 'Murda' },
+    { title: 'av', length: '2:44' },
+    { title: 'sorun ben', length: '2:31' },
+    { title: 'otelden otele', length: '1:57', feat: 'Pango' },
+    { title: "alacati'da", length: '2:30' },
+    { title: 'like an angel', length: '4:18', feat: 'Ruby' },
+    { title: 'bir', length: '3:17' },
+    { title: 'sirenler calsin', length: '4:54', feat: 'Bar B, Bekom, Jefe' },
+    { title: 'spacetusu', length: '5:18', feat: 'Pango' },
+    { title: 'letty & dom freestyle', length: '2:45' },
+    { title: 'champion', length: '4:27' },
+    { title: 'en iyilerden bile', length: '2:49', feat: 'Bar B' },
+    { title: 'alev', length: '2:51', feat: 'Bekom' },
+    { title: 'alacakaranlik', length: '3:46', feat: 'Yung Kafa & Kucuk Efendi' },
+    { title: 'ruyalar anilar kadar onemlidir', length: '3:15' },
+    { title: 'hanimefendi rmx', length: '3:27' },
+    { title: '1ini oldurmek nicin kotudur?', length: '2:13' },
+    { title: 'intro', length: '3:27', feat: 'ORB1' },
+  ];
+
+  const photos = [
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.28.jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.31.jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.32.jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.32 (1).jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.32 (2).jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.32 (3).jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.48.32 (4).jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.50.23.jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.50.29.jpeg',
+    'taycan photos/WhatsApp Image 2026-06-17 at 16.50.29 (1).jpeg',
+  ];
+
+  const trackRows = tracks.map((track, i) => `
+    <button class="tc-track-card" data-index="${i}" data-spotify="${spotifyAlbum}">
+      <span class="tc-track-index">${String(i + 1).padStart(2, '0')}</span>
+      <span class="tc-track-title">${track.title}</span>
+      ${track.feat ? `<span class="tc-track-feat">Motive & ${track.feat}</span>` : '<span class="tc-track-feat">Motive</span>'}
+      <span class="tc-track-time">${track.length}</span>
+      <span class="tc-track-play">PLAY</span>
+    </button>
+  `).join('');
+
+  const photoGrid = [photos[0], photos[2], photos[4], photos[7]].map((src, i) => `
+    <figure class="tc-photo tc-photo-${i + 1}">
+      <img src="${src}" alt="Motive taycan visual ${i + 1}" loading="lazy">
+    </figure>
+  `).join('');
+
+  return `
+  <div class="tc-page" id="tc-tracks">
+    <canvas class="detail-bg-canvas" id="detail-bg-canvas"></canvas>
+    <a href="#discography" class="tc-back-btn">&lt; GARAGE</a>
+
+    <section class="tc-hero">
+      <div class="tc-hero-copy">
+        <div class="tc-kicker">SAVANA // 29.11.2024 // NEW TURKISH RAP STABLE</div>
+        <h1>taycan</h1>
+        <p>
+          Motive stands as one of the most influential names of the new Turkish
+          rap generation, combining sharp storytelling, modern production and an
+          international vision with the discipline of a racehorse entering the
+          track.
+        </p>
+        <div class="tc-stat-row">
+          <span>20 tracks</span>
+          <span>1h 06m</span>
+          <span>success / solitude / crown</span>
+          <span>global production standard</span>
+        </div>
+      </div>
+      <div class="tc-cover-stage">
+        <div class="tc-horse-mark">&#9822;</div>
+        <img src="${_album.cover}" alt="taycan album cover" class="tc-cover">
+        <div class="tc-throne-tag">MODERN KNIGHT<br>ON THE THRONE</div>
+      </div>
+    </section>
+
+    <section class="tc-gallery" aria-label="taycan scattered visual archive">
+      ${photoGrid}
+    </section>
+
+    <section class="tc-story-grid">
+      <article class="tc-story-card tc-wide">
+        <figure class="tc-inline-photo"><img src="${photos[1]}" alt="Motive taycan throne visual"></figure>
+        <span class="tc-card-num">01</span>
+        <h2>Album Philosophy</h2>
+        <p>
+          taycan treats success, solitude, rivalry, power, fame and the fight
+          to stay at the summit like a race route. The modern knight on the
+          throne is not chasing only speed; he is chasing control.
+        </p>
+      </article>
+
+      <article class="tc-story-card">
+        <span class="tc-card-num">02</span>
+        <h2>Global Production</h2>
+        <p>
+          The Cubeatz team is known for work connected to Drake, Travis Scott,
+          Future, 21 Savage and Eminem projects. That production link pushed
+          taycan toward upper-tier global rap standards and gave Motive's era a
+          world-facing edge.
+        </p>
+      </article>
+
+      <article class="tc-story-card">
+        <figure class="tc-inline-photo"><img src="${photos[3]}" alt="Motive taycan castle mood"></figure>
+        <span class="tc-card-num">03</span>
+        <h2>Dragon / Eastnor Castle</h2>
+        <p>
+          The England atmosphere of the "dragon" video brings castle, kingdom
+          and ascension imagery into the visual world of the album.
+        </p>
+      </article>
+
+      <article class="tc-story-card">
+        <span class="tc-card-num">04</span>
+        <h2>FAENA Arena</h2>
+        <p>
+          The FAENA show at Volkswagen Arena turned the album's world into a
+          stage spectacle with a giant cube, LED walls, cinematic transitions
+          and arena-scale performance design.
+        </p>
+      </article>
+
+      <article class="tc-story-card">
+        <figure class="tc-inline-photo"><img src="${photos[6]}" alt="Motive taycan fashion visual"></figure>
+        <span class="tc-card-num">05</span>
+        <h2>Fashion / Saint Laurent</h2>
+        <p>
+          His Saint Laurent visibility during Paris Fashion Week shows how the
+          taycan era moved beyond music and into a broader global style language.
+        </p>
+      </article>
+
+      <article class="tc-story-card tc-wide">
+        <figure class="tc-inline-photo"><img src="${photos[8]}" alt="Motive taycan global era"></figure>
+        <span class="tc-card-num">06</span>
+        <h2>After Mortal Kombat</h2>
+        <p>
+          MORTAL KOMBAT reaching the top of the Global Debut Album conversation
+          became another milestone proving that Motive is being watched beyond
+          Turkey as a global culture, performance and fashion figure.
+        </p>
+      </article>
+    </section>
+
+    <section class="tc-c-core">
+      <div>
+        <h2>C STABLE ENGINE</h2>
+        <p>This horse-themed panel sends the album's 20 tracks from paddock to
+        track with C-style structs, functions, for loops and while loops.</p>
+      </div>
+      <pre><code>typedef struct {
+  char  name[40];
+  int   lap_seconds;
+  float horse_power;
+} TaycanTrack;
+
+float calculate_stable_power(TaycanTrack stable[], int count) {
+  float total = 0.0f;
+
+  for (int i = 0; i &lt; count; i++) {
+    total += stable[i].horse_power;
+  }
+
+  int lap = 0;
+  while (lap &lt; count) {
+    boost_engine(&amp;stable[lap]);
+    lap++;
+  }
+
+  return total / count;
+}</code></pre>
+      <div class="tc-runner">
+        <button id="tc-run-stable">RUN STABLE LOOP</button>
+        <output id="tc-stable-output">stable waiting...</output>
+      </div>
+    </section>
+
+    <section class="tc-tracklist">
+      <div class="tc-section-head">
+        <h2>TRACKLIST PADDOCK</h2>
+        <span>PLAY -> Spotify taycan album</span>
+      </div>
+      <div class="tc-track-grid">
+        ${trackRows}
+      </div>
+    </section>
+  </div>
+  `;
+}
+
+function bindTaycanTracks() {
+  const container = document.getElementById('tc-tracks');
+  if (!container) return;
+
+  container.querySelectorAll('.tc-track-card').forEach(row => {
+    row.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleTrack(parseInt(row.dataset.index, 10), row.dataset.spotify);
+    });
+  });
+
+  const runButton = document.getElementById('tc-run-stable');
+  const output = document.getElementById('tc-stable-output');
+  runButton?.addEventListener('click', e => {
+    e.stopPropagation();
+    const lapSeconds = [162,197,264,164,151,117,150,188,205,294,318,225,216,168,171,226,195,207,133,207];
+    let stamina = 0;
+    let podium = 0;
+    let lap = 0;
+
+    for (let i = 0; i < lapSeconds.length; i++) {
+      stamina += Math.round(lapSeconds[i] / 10);
+      if (lapSeconds[i] >= 200) podium++;
+    }
+
+    while (lap < lapSeconds.length) lap++;
+
+    output.textContent = `for: ${lapSeconds.length} tracks | podium laps: ${podium} | while laps: ${lap} | stable power: ${stamina}hp`;
+    WASM_SIM.log('Taycan stable loop executed', 'success');
+  });
+}
+
+/* ==========================================================================
+   Ezhel Muptezhel - Green Ankara Trap / Reggae Page
+   ========================================================================== */
+function buildMuptezhelHTML() {
+  const spotifyAlbum = 'https://open.spotify.com/album/5mo701EsMb8GFdF4YL3NG8';
+  const tracks = [
+    { title: 'Alo', length: '3:27' },
+    { title: 'Geceler', length: '3:43' },
+    { title: 'Benim Derdim', length: '4:41' },
+    { title: 'İyi Bil', length: '3:30' },
+    { title: 'Nefret', length: '3:11' },
+    { title: 'Şehrimin Tadı', length: '4:13' },
+    { title: 'Hayır', length: '3:36' },
+    { title: 'Alışamadım', length: '2:33' },
+    { title: 'Küvet', length: '4:59' },
+    { title: 'Derman', length: '4:09' },
+    { title: 'Bazen', length: '3:51', feat: 'Emel' },
+    { title: 'Esrarengiz', length: '3:51' },
+  ];
+
+  const photos = [
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.24.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.25%20%281%29.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.25%20%282%29.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.25%20%283%29.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.25.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.47.26.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.55.24%20%281%29.jpeg',
+    'm%C3%BCptezhel%20photos/WhatsApp%20Image%202026-06-17%20at%2017.55.24.jpeg',
+  ];
+
+  const leaf = `
+    <div class="mp-hemp-leaf" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+  `;
+
+  const trackRows = tracks.map((track, i) => `
+    <button class="mp-track-card" data-index="${i}" data-spotify="${spotifyAlbum}">
+      <span class="mp-track-index">${String(i + 1).padStart(2, '0')}</span>
+      <span class="mp-track-title">${track.title}</span>
+      <span class="mp-track-artist">${track.feat ? `Ezhel & ${track.feat}` : 'Ezhel'}</span>
+      <span class="mp-track-time">${track.length}</span>
+      <span class="mp-track-play">PLAY</span>
+    </button>
+  `).join('');
+
+  return `
+  <div class="mp-page" id="mp-tracks">
+    <canvas class="detail-bg-canvas" id="detail-bg-canvas"></canvas>
+    <a href="#discography" class="mp-back-btn">&lt; BACK TO ARCHIVE</a>
+
+    <section class="mp-hero">
+      <div class="mp-leaf-field">
+        <span>${leaf}</span>
+        <span>${leaf}</span>
+        <span>${leaf}</span>
+      </div>
+      <div class="mp-hero-copy">
+        <div class="mp-kicker">KOAL // 25.05.2017 // ANKARA TRAP / REGGAE</div>
+        <h1>Müptezhel</h1>
+        <p>
+          Ezhel's debut studio album turned trap, hip-hop and reggae into a
+          new Turkish rap language. Its smoky Ankara atmosphere, Bugy-led
+          production and street-level writing pushed the underground into the
+          mainstream.
+        </p>
+        <div class="mp-stat-row">
+          <span>12 tracks</span>
+          <span>45:44</span>
+          <span>Bugy / DJ Artz / Ezhel</span>
+          <span>trap + reggae + hip-hop</span>
+        </div>
+      </div>
+      <figure class="mp-hero-photo">
+        <img src="${photos[0]}" alt="Ezhel Muptezhel green room visual">
+      </figure>
+    </section>
+
+    <section class="mp-visual-spread" aria-label="Muptezhel visual archive">
+      <figure class="mp-photo-tile mp-photo-wide">
+        <img src="${photos[1]}" alt="Ezhel street wall visual" loading="lazy">
+      </figure>
+      <div class="mp-visual-copy">
+        <span>urban archive</span>
+        <h2>From Ankara Blocks To A Generation Anthem</h2>
+        <p>
+          "Geceler", "Şehrimin Tadı", "Benim Derdim", "Küvet" and "Derman"
+          travelled fast because the album sounded like the city at night:
+          direct, melodic, rough and instantly memorable.
+        </p>
+      </div>
+      <figure class="mp-photo-tile">
+        <img src="${photos[2]}" alt="Ezhel live crowd visual" loading="lazy">
+      </figure>
+    </section>
+
+    <section class="mp-story-grid">
+      <article class="mp-story-card">
+        <span class="mp-card-num">01</span>
+        <h2>Breakpoint Record</h2>
+        <p>
+          Released on 25 May 2017, Müptezhel is remembered as one of Turkish
+          rap's turning points. It helped pull rap from the underground into
+          young listeners' everyday mainstream playlists.
+        </p>
+      </article>
+
+      <article class="mp-story-card mp-photo-card">
+        <img src="${photos[4]}" alt="Ezhel portrait visual" loading="lazy">
+      </article>
+
+      <article class="mp-story-card">
+        <span class="mp-card-num">02</span>
+        <h2>Reggae Smoke / Trap Drums</h2>
+        <p>
+          The record's identity comes from the friction between trap patterns,
+          dub-reggae echoes and Ezhel's melodic rap delivery. That sound later
+          influenced a wave of new Turkish artists.
+        </p>
+      </article>
+
+      <article class="mp-story-card mp-wide">
+        <figure class="mp-inline-photo">
+          <img src="${photos[3]}" alt="Ezhel performance still" loading="lazy">
+        </figure>
+        <div class="mp-wide-copy">
+          <span class="mp-card-num">03</span>
+          <h2>Controversy And Court</h2>
+          <p>
+            The album's rise also produced a national debate around lyrics,
+            youth culture and artistic freedom. Ezhel was arrested on 24 May
+            2018 over accusations that his songs encouraged drug use, then was
+            acquitted at the first hearing on 19 June 2018.
+          </p>
+        </div>
+      </article>
+
+      <article class="mp-story-card mp-debate-card">
+        <span class="mp-card-num">04</span>
+        <h2>Debates And Criticism</h2>
+        <p>
+          However, Müptezhel's rise also brought major controversy. Because of
+          several songs and music videos from the album, Ezhel was frequently
+          discussed through accusations that he was encouraging drug use.
+          Especially in conservative circles, critics argued that the lyrics
+          could negatively affect young listeners. Even in academic studies,
+          Ezhel and the arabesque-trap wave were placed at the center of
+          debates about youth culture and substance use in Turkey.
+        </p>
+      </article>
+
+      <article class="mp-story-card">
+        <span class="mp-card-num">05</span>
+        <h2>Europe Aftermath</h2>
+        <p>
+          After the trial, Ezhel's career expanded toward Berlin and Europe.
+          Projects with Ufo361 and Murda gave Turkish rap a stronger presence
+          in the European market, while international press began following him.
+        </p>
+      </article>
+
+      <article class="mp-story-card mp-photo-card">
+        <img src="${photos[5]}" alt="Muptezhel album-era visual" loading="lazy">
+      </article>
+    </section>
+
+    <section class="mp-c-core">
+      <div class="mp-c-copy">
+        <span>C MODULE</span>
+        <h2>GREEN LOOP ENGINE</h2>
+        <p>
+          This panel models the album with C-style structs, arrays, functions,
+          a for loop for track analysis and a while loop for delayed reggae
+          echoes. It keeps the project visibly connected to the C course.
+        </p>
+      </div>
+      <pre><code>typedef struct {
+  char title[32];
+  int  seconds;
+  int  green_level;
+} MuptezhelTrack;
+
+int calculate_city_smoke(MuptezhelTrack album[], int count) {
+  int pressure = 0;
+
+  for (int i = 0; i &lt; count; i++) {
+    pressure += album[i].seconds / 30;
+  }
+
+  int echo = 0;
+  while (echo &lt; count) {
+    apply_reggae_delay(&amp;album[echo]);
+    echo++;
+  }
+
+  return pressure;
+}</code></pre>
+      <div class="mp-runner">
+        <button id="mp-run-green-loop">RUN GREEN LOOP</button>
+        <output id="mp-green-output">album buffer waiting...</output>
+      </div>
+    </section>
+
+    <section class="mp-album-band">
+      <figure>
+        <img src="${photos[6]}" alt="Ezhel blue stage and Turkish flag" loading="lazy">
+      </figure>
+      <div>
+        <span>legacy</span>
+        <h2>A Debut That Became A Cultural Argument</h2>
+        <p>
+          Looking back, Müptezhel is more than a successful first album. It is
+          the starting point of a story that links mainstream Turkish trap, a
+          public trial, freedom-of-expression debates and international growth.
+        </p>
+      </div>
+      <figure>
+        <img src="${photos[7]}" alt="Ezhel stage lights visual" loading="lazy">
+      </figure>
+    </section>
+
+    <section class="mp-tracklist">
+      <div class="mp-section-head">
+        <h2>TRACKLIST GREENHOUSE</h2>
+        <span>PLAY -> Spotify Müptezhel album</span>
+      </div>
+      <div class="mp-track-grid">
+        ${trackRows}
+      </div>
+    </section>
+  </div>
+  `;
+}
+
+function bindMuptezhelTracks() {
+  const container = document.getElementById('mp-tracks');
+  if (!container) return;
+
+  container.querySelectorAll('.mp-track-card').forEach(row => {
+    row.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleTrack(parseInt(row.dataset.index, 10), row.dataset.spotify);
+    });
+  });
+
+  const runButton = document.getElementById('mp-run-green-loop');
+  const output = document.getElementById('mp-green-output');
+  runButton?.addEventListener('click', e => {
+    e.stopPropagation();
+    const seconds = [207, 223, 281, 210, 191, 253, 216, 153, 299, 249, 231, 231];
+    let pressure = 0;
+    let longCuts = 0;
+    let echo = 0;
+
+    for (let i = 0; i < seconds.length; i++) {
+      pressure += Math.floor(seconds[i] / 30);
+      if (seconds[i] >= 240) longCuts++;
+    }
+
+    while (echo < seconds.length) echo++;
+
+    output.textContent = `for: ${seconds.length} tracks | long cuts: ${longCuts} | while echoes: ${echo} | city smoke: ${pressure}`;
+    WASM_SIM.log('Muptezhel green loop executed', 'success');
+  });
+}
+
+/* ==========================================================================
+   Kendrick Lamar DAMN. - Pulitzer / Duality / Red Minimal Page
+   ========================================================================== */
+function buildDamnHTML() {
+  const spotifyAlbum = 'https://open.spotify.com/album/4eLPsYPBmXABThSJ821sqY';
+  const tracks = [
+    { title: 'BLOOD.', length: '1:58' },
+    { title: 'DNA.', length: '3:05' },
+    { title: 'YAH.', length: '2:40' },
+    { title: 'ELEMENT.', length: '3:28' },
+    { title: 'FEEL.', length: '3:34' },
+    { title: 'LOYALTY.', length: '3:47', feat: 'Rihanna' },
+    { title: 'PRIDE.', length: '4:35' },
+    { title: 'HUMBLE.', length: '2:57' },
+    { title: 'LUST.', length: '5:07' },
+    { title: 'LOVE.', length: '3:33', feat: 'Zacari' },
+    { title: 'XXX.', length: '4:14', feat: 'U2' },
+    { title: 'FEAR.', length: '7:40' },
+    { title: 'GOD.', length: '4:08' },
+    { title: 'DUCKWORTH.', length: '4:08' },
+  ];
+
+  const photos = [
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.15.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%281%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%282%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%283%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%284%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%285%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16%20%286%29.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.16.jpeg',
+    'damn%20photos/WhatsApp%20Image%202026-06-17%20at%2019.12.35.jpeg',
+  ];
+
+  const trackRows = tracks.map((track, i) => `
+    <button class="dm-track-card" data-index="${i}" data-spotify="${spotifyAlbum}">
+      <span class="dm-track-index">${String(i + 1).padStart(2, '0')}</span>
+      <span class="dm-track-title">${track.title}</span>
+      <span class="dm-track-artist">${track.feat ? `Kendrick Lamar & ${track.feat}` : 'Kendrick Lamar'}</span>
+      <span class="dm-track-time">${track.length}</span>
+      <span class="dm-track-play">PLAY</span>
+    </button>
+  `).join('');
+
+  return `
+  <div class="dm-page" id="dm-tracks">
+    <canvas class="detail-bg-canvas" id="detail-bg-canvas"></canvas>
+    <a href="#discography" class="dm-back-btn">&lt; BACK TO ARCHIVE</a>
+
+    <section class="dm-hero">
+      <div class="dm-hero-copy">
+        <div class="dm-kicker">TDE / AFTERMATH / INTERSCOPE // 14.04.2017</div>
+        <h1>DAMN.</h1>
+        <p>
+          Kendrick Lamar's fourth studio album turns moral pressure, fame,
+          fear, pride, loyalty and American contradiction into a stripped-down
+          red-and-black statement. It is conscious hip-hop with trap, R&B and
+          pop edges, built to hit like a headline.
+        </p>
+        <div class="dm-stat-row">
+          <span>14 tracks</span>
+          <span>54:54</span>
+          <span>Pulitzer Prize for Music</span>
+          <span>Best Rap Album Grammy</span>
+        </div>
+      </div>
+      <figure class="dm-cover-stack">
+        <img src="${_album.cover}" alt="DAMN. album cover" class="dm-cover">
+        <figcaption>LOUD / ABRASIVE / MEMORABLE</figcaption>
+      </figure>
+    </section>
+
+    <section class="dm-photo-lead" aria-label="DAMN visual archive">
+      <figure class="dm-photo dm-photo-tall">
+        <img src="${photos[0]}" alt="Kendrick Lamar stadium performance" loading="lazy">
+      </figure>
+      <div class="dm-lead-copy">
+        <span>the sentence</span>
+        <h2>Damned If I Do, Damned If I Don't</h2>
+        <p>
+          The final title came from that compressed feeling of being trapped
+          between opposite verdicts. DAMN. sounds cleaner than To Pimp a
+          Butterfly, but it keeps Kendrick's writing under maximum tension:
+          direct hooks, dense confession and sudden political impact.
+        </p>
+      </div>
+      <figure class="dm-photo">
+        <img src="${photos[1]}" alt="Kendrick Lamar red white performance formation" loading="lazy">
+      </figure>
+    </section>
+
+    <section class="dm-story-grid">
+      <article class="dm-story-card">
+        <span class="dm-card-num">01</span>
+        <h2>Production Circle</h2>
+        <p>
+          Kendrick assembled a wide production network around the album,
+          including Top Dawg, Sounwave, DJ Dahi, Mike Will Made It and Ricci
+          Riera, with further contributions from James Blake, Steve Lacy,
+          BadBadNotGood, Greg Kurstin, the Alchemist and 9th Wonder.
+        </p>
+      </article>
+
+      <article class="dm-story-card dm-photo-card">
+        <img src="${photos[2]}" alt="Kendrick Lamar Grammy visual" loading="lazy">
+      </article>
+
+      <article class="dm-story-card">
+        <span class="dm-card-num">02</span>
+        <h2>Singles That Cut Through</h2>
+        <p>
+          "HUMBLE." arrived before the album and became Kendrick's first
+          number-one Billboard Hot 100 single as a lead artist. "LOYALTY." with
+          Rihanna and "LOVE." with Zacari expanded the album's radio reach
+          without softening its central conflict.
+        </p>
+      </article>
+
+      <article class="dm-story-card dm-wide">
+        <figure class="dm-inline-photo">
+          <img src="${photos[8]}" alt="Kendrick Lamar black and white graphic visual" loading="lazy">
+        </figure>
+        <div class="dm-wide-copy">
+          <span class="dm-card-num">03</span>
+          <h2>Reverse Narrative</h2>
+          <p>
+            Kendrick later said the album was designed so it could also be
+            played in reverse order. The standard sequence moves from "BLOOD."
+            to "DUCKWORTH."; the Collector's Edition flips that path and makes
+            the story feel like a different moral loop.
+          </p>
+        </div>
+      </article>
+
+      <article class="dm-story-card dm-award-card">
+        <span class="dm-card-num">04</span>
+        <h2>Pulitzer Shockwave</h2>
+        <p>
+          DAMN. won the 2018 Pulitzer Prize for Music, making Kendrick the
+          first winner outside classical and jazz traditions. It also won Best
+          Rap Album at the 2018 Grammy Awards, confirming both institutional
+          recognition and rap dominance in the same cycle.
+        </p>
+      </article>
+
+      <article class="dm-story-card dm-photo-card">
+        <img src="${photos[4]}" alt="Kendrick Lamar portrait visual" loading="lazy">
+      </article>
+
+      <article class="dm-story-card">
+        <span class="dm-card-num">05</span>
+        <h2>Commercial Weight</h2>
+        <p>
+          DAMN. debuted at number one on the Billboard 200 with 603,000
+          album-equivalent units in its first week and later became Billboard's
+          year-end number one album of 2017.
+        </p>
+      </article>
+    </section>
+
+    <section class="dm-c-core">
+      <div class="dm-c-copy">
+        <span>C MODULE</span>
+        <h2>REVERSE MORAL INDEX</h2>
+        <p>
+          This block turns the album's dual sequencing idea into C-style logic:
+          a struct array stores track pressure, a for loop reads the album
+          forward, and a while loop walks the same data backwards.
+        </p>
+      </div>
+      <pre><code>typedef struct {
+  char title[16];
+  int  seconds;
+  int  pressure;
+} DamnTrack;
+
+int scan_damn(DamnTrack album[], int count) {
+  int verdict = 0;
+
+  for (int i = 0; i &lt; count; i++) {
+    verdict += album[i].pressure;
+  }
+
+  int reverse = count - 1;
+  while (reverse &gt;= 0) {
+    verdict += album[reverse].seconds / 60;
+    reverse--;
+  }
+
+  return verdict;
+}</code></pre>
+      <div class="dm-runner">
+        <button id="dm-run-verdict">RUN REVERSE INDEX</button>
+        <output id="dm-verdict-output">verdict waiting...</output>
+      </div>
+    </section>
+
+    <section class="dm-image-band">
+      <figure><img src="${photos[3]}" alt="Kendrick Lamar DJ parody visual" loading="lazy"></figure>
+      <figure><img src="${photos[5]}" alt="Kendrick Lamar square portrait visual" loading="lazy"></figure>
+      <figure><img src="${photos[6]}" alt="Kendrick Lamar black and red portrait visual" loading="lazy"></figure>
+      <figure><img src="${photos[7]}" alt="Kendrick Lamar stage visual" loading="lazy"></figure>
+    </section>
+
+    <section class="dm-tracklist">
+      <div class="dm-section-head">
+        <h2>TRACKLIST // MORAL SEQUENCE</h2>
+        <span>PLAY -> Spotify DAMN. album</span>
+      </div>
+      <div class="dm-track-grid">
+        ${trackRows}
+      </div>
+    </section>
+  </div>
+  `;
+}
+
+function bindDamnTracks() {
+  const container = document.getElementById('dm-tracks');
+  if (!container) return;
+
+  container.querySelectorAll('.dm-track-card').forEach(row => {
+    row.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleTrack(parseInt(row.dataset.index, 10), row.dataset.spotify);
+    });
+  });
+
+  const runButton = document.getElementById('dm-run-verdict');
+  const output = document.getElementById('dm-verdict-output');
+  runButton?.addEventListener('click', e => {
+    e.stopPropagation();
+    const seconds = [118, 185, 160, 208, 214, 227, 275, 177, 307, 213, 254, 460, 248, 248];
+    let forwardPressure = 0;
+    let reverseMinutes = 0;
+    let reverse = seconds.length - 1;
+
+    for (let i = 0; i < seconds.length; i++) {
+      forwardPressure += Math.ceil(seconds[i] / 45);
+    }
+
+    while (reverse >= 0) {
+      reverseMinutes += Math.floor(seconds[reverse] / 60);
+      reverse--;
+    }
+
+    output.textContent = `for: ${seconds.length} tracks | reverse while: ${seconds.length} steps | pressure: ${forwardPressure} | verdict: ${forwardPressure + reverseMinutes}`;
+    WASM_SIM.log('DAMN reverse moral index executed', 'success');
+  });
+}
+
 function buildHTML() {
   return `
   <div class="detail-view-container" id="detail-view-shell">
@@ -1356,7 +2119,36 @@ function initBgCanvas() {
     const bubbles = Array.from({length:40}, () => ({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*4+1, vy: -(Math.random()*0.4+0.1), a: Math.random()*0.3+0.1, da: 0.002+Math.random()*0.005 }));
     const draw = () => { if (!active) return; ctx.clearRect(0,0,canvas.width,canvas.height); bubbles.forEach(b => { ctx.fillStyle = `rgba(0,180,216,${b.a*0.4})`; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill(); b.y += b.vy; b.a += b.da; if (b.a > 0.9 || b.a < 0.05) b.da *= -1; if (b.y < -10) { b.y = canvas.height + 10; b.x = Math.random()*canvas.width; } }); _canvasAnimId = requestAnimationFrame(draw); }; draw();
   } else if (_album.id === 'kendrick-damn') {
-    const draw = () => { if (!active) return; ctx.clearRect(0,0,canvas.width,canvas.height); if(Math.random()<0.02){ctx.fillStyle='rgba(217,4,41,0.04)'; ctx.fillRect(0,Math.random()*canvas.height,canvas.width,2+Math.random()*3);} _canvasAnimId=requestAnimationFrame(draw); }; draw();
+    const verdicts = Array.from({length:34}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      w: 40 + Math.random() * 220,
+      vx: -0.3 + Math.random() * 0.6,
+      a: 0.04 + Math.random() * 0.14,
+    }));
+    const draw = () => {
+      if (!active) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      verdicts.forEach(v => {
+        ctx.fillStyle = `rgba(217,4,41,${v.a})`;
+        ctx.fillRect(v.x, v.y, v.w, 2);
+        if (Math.random() < 0.18) {
+          ctx.fillStyle = `rgba(244,241,234,${v.a * 0.8})`;
+          ctx.fillRect(v.x + v.w * 0.35, v.y + 6, v.w * 0.22, 1);
+        }
+        v.x += v.vx;
+        if (v.x < -v.w || v.x > canvas.width + v.w) {
+          v.x = Math.random() * canvas.width;
+          v.y = Math.random() * canvas.height;
+        }
+      });
+      if (Math.random() < 0.045) {
+        ctx.fillStyle = 'rgba(217,4,41,0.065)';
+        ctx.fillRect(0, Math.random()*canvas.height, canvas.width, 2 + Math.random()*8);
+      }
+      _canvasAnimId = requestAnimationFrame(draw);
+    };
+    draw();
   } else if (_album.id === 'hayko-sandik') {
     const pts = Array.from({length:25}, () => ({ x: Math.random()*canvas.width, y: canvas.height+20, vx:(Math.random()-0.5)*0.5, vy:-(0.3+Math.random()*0.6), a:0.3+Math.random()*0.3 }));
     const draw = () => { if(!active) return; ctx.clearRect(0,0,canvas.width,canvas.height); pts.forEach(p=>{ctx.fillStyle=`rgba(199,0,57,${p.a*0.1})`; ctx.beginPath(); ctx.arc(p.x,p.y,30,0,Math.PI*2); ctx.fill(); p.x+=p.vx; p.y+=p.vy; p.a-=0.001; if(p.y<-60||p.a<=0){p.x=Math.random()*canvas.width; p.y=canvas.height+20; p.a=0.3+Math.random()*0.3;}}); _canvasAnimId=requestAnimationFrame(draw); }; draw();
@@ -1388,6 +2180,103 @@ function initBgCanvas() {
         ctx.fillStyle = 'rgba(255,38,0,0.055)';
         ctx.fillRect(0, Math.random()*canvas.height, canvas.width, 2 + Math.random()*6);
       }
+      _canvasAnimId = requestAnimationFrame(draw);
+    };
+    draw();
+  } else if (_album.id === 'motive-taycan') {
+    const rails = Array.from({length:26}, (_, i) => ({
+      y: (i / 26) * canvas.height,
+      speed: 0.7 + Math.random() * 1.8,
+      alpha: 0.035 + Math.random() * 0.08,
+    }));
+    const sparks = Array.from({length:34}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: 1.2 + Math.random() * 3.4,
+      a: 0.08 + Math.random() * 0.2,
+    }));
+    const draw = () => {
+      if (!active) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      rails.forEach(r => {
+        ctx.strokeStyle = `rgba(199,167,106,${r.alpha})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, r.y);
+        ctx.lineTo(canvas.width, r.y + Math.sin(r.y * 0.02) * 8);
+        ctx.stroke();
+        r.y += r.speed;
+        if (r.y > canvas.height) r.y = -20;
+      });
+      sparks.forEach(s => {
+        ctx.fillStyle = `rgba(230,220,190,${s.a})`;
+        ctx.fillRect(s.x, s.y, 24, 1);
+        s.x += s.vx;
+        if (s.x > canvas.width + 30) {
+          s.x = -30;
+          s.y = Math.random() * canvas.height;
+        }
+      });
+      _canvasAnimId = requestAnimationFrame(draw);
+    };
+    draw();
+  } else if (_album.id === 'ezhel-muptezhel') {
+    const leaves = Array.from({length:30}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 4 + Math.random() * 10,
+      vx: -0.18 + Math.random() * 0.36,
+      vy: 0.25 + Math.random() * 0.75,
+      spin: Math.random() * Math.PI,
+      alpha: 0.08 + Math.random() * 0.22,
+    }));
+    const haze = Array.from({length:14}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: 40 + Math.random() * 110,
+      vx: -0.25 + Math.random() * 0.5,
+      alpha: 0.025 + Math.random() * 0.04,
+    }));
+    const drawLeaf = leaf => {
+      ctx.save();
+      ctx.translate(leaf.x, leaf.y);
+      ctx.rotate(leaf.spin);
+      ctx.fillStyle = `rgba(89, 255, 136, ${leaf.alpha})`;
+      for (let i = -2; i <= 2; i++) {
+        ctx.save();
+        ctx.rotate(i * 0.42);
+        ctx.beginPath();
+        ctx.ellipse(0, -leaf.r, leaf.r * 0.28, leaf.r, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.restore();
+    };
+    const draw = () => {
+      if (!active) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      haze.forEach(h => {
+        const grad = ctx.createRadialGradient(h.x, h.y, 0, h.x, h.y, h.r);
+        grad.addColorStop(0, `rgba(68, 255, 127, ${h.alpha})`);
+        grad.addColorStop(1, 'rgba(68, 255, 127, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(h.x, h.y, h.r, 0, Math.PI * 2);
+        ctx.fill();
+        h.x += h.vx;
+        if (h.x < -h.r) h.x = canvas.width + h.r;
+        if (h.x > canvas.width + h.r) h.x = -h.r;
+      });
+      leaves.forEach(leaf => {
+        drawLeaf(leaf);
+        leaf.x += leaf.vx + Math.sin(leaf.y * 0.01) * 0.08;
+        leaf.y += leaf.vy;
+        leaf.spin += 0.004;
+        if (leaf.y > canvas.height + 30) {
+          leaf.y = -30;
+          leaf.x = Math.random() * canvas.width;
+        }
+      });
       _canvasAnimId = requestAnimationFrame(draw);
     };
     draw();

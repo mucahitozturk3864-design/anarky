@@ -53,7 +53,7 @@ export const ALBUM_DB = [
     themeColor: '#adb5bd', hasParental: true,
     cover: 'assets/images/cover-taycan.jpg',
     themeFile: 'theme-taycan',
-    tracks: ['TAYCAN','RODEO','GLIDE','RIDE OR DIE','SIREN','CHROME','ZİNCİR','24/7'],
+    tracks: ['dragon','mantra','tanktop','av','sorun ben','otelden otele',"alacati'da",'like an angel','bir','sirenler calsin','spacetusu','letty & dom freestyle','champion','en iyilerden bile','alev','alacakaranlik','ruyalar anilar kadar onemlidir','hanimefendi rmx','1ini oldurmek nicin kotudur?','intro'],
   },
   {
     id: 'ezhel-muptezhel', title: 'Müptezhel', artist: 'Ezhel',
@@ -61,7 +61,7 @@ export const ALBUM_DB = [
     themeColor: '#2a9d8f', hasParental: true,
     cover: 'assets/images/cover-muptezhel.jpg',
     themeFile: 'theme-muptezhel',
-    tracks: ['Alo','Geceler','Benim Derdim','İmkansızım','Şehrimin Tadı','Nefret','Bırak Kadınım','Derman'],
+    tracks: ['Alo','Geceler','Benim Derdim','İyi Bil','Nefret','Şehrimin Tadı','Hayır','Alışamadım','Küvet','Derman','Bazen','Esrarengiz'],
   },
   {
     id: 'kendrick-damn', title: 'DAMN.', artist: 'Kendrick Lamar',
